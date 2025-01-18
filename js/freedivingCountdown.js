@@ -29,10 +29,15 @@ const official_times = ["2 minutes to official top",
     "30",
     "start cancelled"]
 
+var muted = false;
+
 const speak = function (text) {
+    if (!muted) {
     let utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "en-US";
+    window.speechSynthesis.cancel();
     speechSynthesis.speak(utterance);
+    }
 }
 
 var timer = new easytimer.Timer();
@@ -124,5 +129,8 @@ timer_countdown.addEventListener('targetAchieved', function (e) {
     timer.start();
 });
 
+const freedivingCountdown = function () {
+    timer_countdown.start({ countdown: true, startValues: { minutes: 2, seconds: 10 } });
+}
 
-timer_countdown.start({ countdown: true, startValues: { minutes: 2, seconds: 10 } });
+freedivingCountdown();
