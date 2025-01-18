@@ -42,7 +42,7 @@ timer.addEventListener('secondsUpdated', function (e) {
     if (timeplus === 31) {
         speak('start cancelled');
         timer.stop();
-        timer.reset();
+        // timer.reset();
     } else if (timeplus === 30) {
         speak('30')
     } else if (timeplus === 29) {
