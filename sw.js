@@ -3,7 +3,7 @@
 // todo: use typescript. referernces:
 // https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/service_worker_api
 
-var cacheName = 'epwa';
+var cacheName = 'fridivingCountdown';
 
 var filesToCache = [
 
@@ -16,17 +16,20 @@ var filesToCache = [
   //--------------------------------------------------------------------------------------------------------------------
 
   // app files ---------------------------------------------------------------------------------------------------------
-  'page2.html',
+  // 'page2.html',
   'css/styles.css',
-  'img/header.jpg',
+  // 'img/header.jpg',
   'img/offline-img.png',
-  'https://fonts.googleapis.com/css?family=Raleway',
+  // 'https://fonts.googleapis.com/css?family=Raleway',
+  'js/freedivingCountdown.js',
   // -------------------------------------------------------------------------------------------------------------------
 
   // vendor files ------------------------------------------------------------------------------------------------------
   // - easytimer
   'vendor/easytimer/easytimer.min.js',
   'vendor/easytimer/easytimer.min.css',
+  // - jquery
+  'vendor/jquery/jquery-3.7.1.min.js',
   // -------------------------------------------------------------------------------------------------------------------
 ];
 

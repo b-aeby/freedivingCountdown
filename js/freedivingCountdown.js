@@ -31,6 +31,7 @@ const official_times = ["2 minutes to official top",
 
 const speak = function (text) {
     let utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
     speechSynthesis.speak(utterance);
 }
 
