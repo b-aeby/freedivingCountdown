@@ -1,0 +1,16 @@
+{
+  "short_name": "FRI:diving Countdown",
+  "name": "FRI:diving Countdown",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFFFFF"
+//  "background_color": "#2196F3"
+}
