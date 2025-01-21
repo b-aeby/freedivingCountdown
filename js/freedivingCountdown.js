@@ -67,30 +67,37 @@ const otp31 = new SpeechSynthesisUtterance("Start cancelled");
 otm120.voice = synth.getVoices()[0];
 otm120.pitch = 1;
 otm120.rate = 1;
+otm120.lang = "en-US"
 
 otm90.voice = synth.getVoices()[0];
 otm90.pitch = 1;
 otm90.rate = 1;
+otm90.lang = "en-US"
 
 otm60.voice = synth.getVoices()[0];
 otm60.pitch = 1;
 otm60.rate = 1;
+otm60.lang = "en-US"
 
 otm30.voice = synth.getVoices()[0];
 otm30.pitch = 1;
 otm30.rate = 1;
+otm30.lang = "en-US"
 
 otm20.voice = synth.getVoices()[0];
 otm20.pitch = 1;
 otm20.rate = 1;
+otm20.lang = "en-US"
 
 otm10.voice = synth.getVoices()[0];
 otm10.pitch = 1;
 otm10.rate = 1;
+otm10.lang = "en-US"
 
 otm5.voice = synth.getVoices()[0];
 otm5.pitch = 1;
 otm5.rate = 1;
+otm5.lang = "en-US"
 
 otm4.voice = synth.getVoices()[0];
 otm4.pitch = 1;
@@ -199,43 +206,43 @@ timer.addEventListener('secondsUpdated', function (e) {
     $('#basicUsage').html(timer.getTimeValues().toString());
     var timeplus = timer.getTotalTimeValues().seconds;
     if (timeplus === 31) {
-        speak(otp31);
+        synth.speak(otp31);
         timer.stop();
         // timer.reset();
     } else if (timeplus === 30) {
-        speak(otp30)
+        synth.speak(otp30)
     } else if (timeplus === 29) {
-        speak(otp29)
+        synth.speak(otp29)
     } else if (timeplus === 28) {
-        speak(otp28)
+        synth.speak(otp28)
     } else if (timeplus === 27) {
-        speak(otp27)
+        synth.speak(otp27)
     } else if (timeplus === 26) {
-        speak(otp26)
+        synth.speak(otp26)
     } else if (timeplus === 25) {
-        speak(otp25)
+        synth.speak(otp25)
     } else if (timeplus === 20) {
-        speak(otp20)
+        synth.speak(otp20)
     } else if (timeplus === 10) {
-        speak(otp10)
+        synth.speak(otp10)
     } else if (timeplus === 9) {
-        speak(otp9)
+        synth.speak(otp9)
     } else if (timeplus === 8) {
-        speak(otp8)
+        synth.speak(otp8)
     } else if (timeplus === 7) {
-        speak(otp7)
+        synth.speak(otp7)
     } else if (timeplus === 6) {
-        speak(otp6)
+        synth.speak(otp6)
     } else if (timeplus === 5) {
-        speak(otp5)
+        synth.speak(otp5)
     } else if (timeplus === 4) {
-        speak(otp4)
+        synth.speak(otp4)
     } else if (timeplus === 3) {
-        speak(otp3)
+        synth.speak(otp3)
     } else if (timeplus === 2) {
-        speak(otp2)
+        synth.speak(otp2)
     } else if (timeplus === 1) {
-        speak(otp1)
+        synth.speak(otp1)
     } else {
         console.log(timeplus);
     }
@@ -247,28 +254,28 @@ timer_countdown.addEventListener('secondsUpdated', function (e) {
     $('#countdownExample .values').html(timer_countdown.getTimeValues().toString());
     var timeleft = timer_countdown.getTotalTimeValues().seconds;
     if (timeleft === 120) {
-        speak(otm120);
+        synth.speak(otm120);
         console.log("2 minutes to official top");
     } else if (timeleft === 90) {
-        speak(otm90);
+        synth.speak(otm90);
     } else if (timeleft === 60) {
-        speak(otm60);
+        synth.speak(otm60);
     } else if (timeleft === 30) {
-        speak(otm30)
+        synth.speak(otm30)
     } else if (timeleft === 20) {
-        speak(otm20)
+        synth.speak(otm20)
     } else if (timeleft === 10) {
-        speak(otm10)
+        synth.speak(otm10)
     } else if (timeleft === 5) {
-        speak(otm5)
+        synth.speak(otm5)
     } else if (timeleft === 4) {
-        speak(otm4)
+        synth.speak(otm4)
     } else if (timeleft === 3) {
-        speak(otm3)
+        synth.speak(otm3)
     } else if (timeleft === 2) {
-        speak(otm2)
+        synth.speak(otm2)
     } else if (timeleft === 1) {
-        speak(otm1)
+        synth.speak(otm1)
     } else {
         console.log(timeleft);
     }
@@ -278,7 +285,7 @@ timer_countdown.addEventListener('secondsUpdated', function (e) {
 
 timer_countdown.addEventListener('targetAchieved', function (e) {
     $('#countdownExample .values').html('Official top');
-    speak('official top')
+    // speak('official top')
     timer.start();
 });
 
