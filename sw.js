@@ -27,9 +27,11 @@ var filesToCache = [
   // vendor files ------------------------------------------------------------------------------------------------------
   // - easytimer
   'vendor/easytimer/easytimer.min.js',
-  'vendor/easytimer/easytimer.min.css',
   // - jquery
   'vendor/jquery/jquery-3.7.1.min.js',
+  // BOOTSTRAP
+  'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css',
+  'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js',
   // -------------------------------------------------------------------------------------------------------------------
 
   // Audio files
