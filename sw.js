@@ -114,19 +114,19 @@ self.addEventListener('activate', function (event) {
  * @param {function} Callback function with event data
  *
  */
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    // test if the request is cached
-    caches.match(event.request).then(function(response) {
-      // 1) if response cached, it will be returned from browser cache
-      // 2) if response not cached, fetch resource from network
-      return response || fetch(event.request);
-    }).catch(function (err) {
-      // if response not cached and network not available an error is thrown => return fallback image
-      return caches.match('img/offline-img.png');
-    })
-  )
-});
+// self.addEventListener('fetch', function(event) {
+//   event.respondWith(
+//     // test if the request is cached
+//     caches.match(event.request).then(function(response) {
+//       // 1) if response cached, it will be returned from browser cache
+//       // 2) if response not cached, fetch resource from network
+//       return response || fetch(event.request);
+//     }).catch(function (err) {
+//       // if response not cached and network not available an error is thrown => return fallback image
+//       return caches.match('img/offline-img.png');
+//     })
+//   )
+// });
 // ---------------------------------------------------------------------------------------------------------------------
 async function networkFirst(request) {
   try {
