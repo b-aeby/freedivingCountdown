@@ -1,36 +1,5 @@
-const official_times = ["2 minutes to official top",
-    "1'30",
-    "1 minute",
-    "30 seconds",
-    "20",
-    "10",
-    "5",
-    "4",
-    "3",
-    "2",
-    "1",
-    "official top",
-    "plus 1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "20",
-    "25",
-    "26",
-    "27",
-    "28",
-    "29",
-    "30",
-    "start cancelled"]
-
 var muted = false;
-const delay = 500;
+const delay = 300;
 
 const otm120 = new Audio(src="audio/otm120.mp3", type="audio/mp3")
 const otm90 = new Audio(src="audio/otm90.mp3", type="audio/mp3")
@@ -107,7 +76,7 @@ timer.addEventListener('secondsUpdated', function (e) {
     // $('#basicUsage').html(timer.getTimeValues().toString());
     // Add timeout delay to refresh display?
     setTimeout(function(){
-        $('#countdownExample .values').html(timer.getTimeValues().toString());
+        $('.countdown').html(timer.getTimeValues().toString());
     }, delay);
     
     var timeplus = timer.getTotalTimeValues().seconds;
@@ -160,7 +129,7 @@ timer_countdown.addEventListener('secondsUpdated', function (e) {
     var timeleft = timer_countdown.getTotalTimeValues().seconds;
 
     setTimeout(function(){
-        $('#countdownExample .values').html(timer_countdown.getTimeValues().toString());
+        $('.countdown').html(timer_countdown.getTimeValues().toString());
     }, delay);
 
     if (timeleft === 120) {
