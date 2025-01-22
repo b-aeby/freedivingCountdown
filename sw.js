@@ -66,6 +66,9 @@ var filesToCache = [
   'otp29.mp3',
   'otp30.mp3',
   'otp31.mp3',
+
+  // fonts:
+  'fonts/DigitalNumbers-Regular.ttf',
 ];
 
 // todo: check if service worker is installed before
