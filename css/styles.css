@@ -8,3 +8,39 @@
   font-family: digitalNumbers;
   src: url('../fonts/DigitalNumbers-Regular.ttf');
 }
+
+@media (min-width: 100px) { 
+  .countdown{
+    font-size: 40px;
+  }
+ }
+
+@media (min-width: 576px) { 
+  .countdown{
+    font-size: 70px;
+  }
+ }
+
+@media (min-width: 768px) { 
+  .countdown{
+    font-size: 90px;
+  }
+ }
+
+@media (min-width: 992px) { 
+  .countdown{
+    font-size: 110px;
+  }
+ }
+
+@media (min-width: 1200px) { 
+  .countdown{
+    font-size: 150px;
+  }
+ }
+
+@media (min-width: 1400px) { 
+  .countdown{
+    font-size: 180px;
+  }
+ }
