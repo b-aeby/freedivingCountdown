@@ -1,12 +1,13 @@
+@font-face {
+  font-family: digitalNumbers;
+  src: url('../fonts/DigitalNumbers-Regular.ttf');
+  font: 1em sans-serif;
+}
+
 .countdown{
   font-size: 180px;
   font-family: digitalNumbers, sans-serif, monospace;
   color:#e01515;
-}
-
-@font-face {
-  font-family: digitalNumbers;
-  src: url('../fonts/DigitalNumbers-Regular.ttf');
 }
 
 @media (min-width: 100px) { 
