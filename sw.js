@@ -31,6 +31,39 @@ var filesToCache = [
   // - jquery
   'vendor/jquery/jquery-3.7.1.min.js',
   // -------------------------------------------------------------------------------------------------------------------
+
+  // Audio files
+  'otm120.mp3',
+  'otm90.mp3',
+  'otm60.mp3',
+  'otm30.mp3',
+  'otm20.mp3',
+  'otm20.mp3',
+  'otm10.mp3',
+  'otm5.mp3',
+  'otm4.mp3',
+  'otm3.mp3',
+  'otm2.mp3',
+  'otm1.mp3',
+  'ot.mp3',
+  'otp1.mp3',
+  'otp2.mp3',
+  'otp3.mp3',
+  'otp4.mp3',
+  'otp5.mp3',
+  'otp6.mp3',
+  'otp7.mp3',
+  'otp8.mp3',
+  'otp9.mp3',
+  'otp10.mp3',
+  'otp20.mp3',
+  'otp25.mp3',
+  'otp26.mp3',
+  'otp27.mp3',
+  'otp28.mp3',
+  'otp29.mp3',
+  'otp30.mp3',
+  'otp31.mp3',
 ];
 
 // todo: check if service worker is installed before

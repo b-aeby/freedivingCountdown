@@ -84,6 +84,7 @@ otp3.preload = 'auto';
 otp4.preload = 'auto';
 otp5.preload = 'auto';
 otp6.preload = 'auto';
+
 otp7.preload = 'auto';
 otp7.play();
 otp7.pause();
@@ -135,7 +136,7 @@ timer.addEventListener('secondsUpdated', function (e) {
     } else if (timeplus === 8) {
         otp8.play();
     } else if (timeplus === 7) {
-        otp7.play;
+        otp7.play();
     } else if (timeplus === 6) {
         otp6.play();
     } else if (timeplus === 5) {
