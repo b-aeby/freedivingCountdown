@@ -102,94 +102,117 @@ otm5.lang = "en-US"
 otm4.voice = synth.getVoices()[0];
 otm4.pitch = 1;
 otm4.rate = 1;
+otm4.lang = "en-US"
 
 otm3.voice = synth.getVoices()[0];
 otm3.pitch = 1;
 otm3.rate = 1;
+otm3.lang = "en-US"
 
 otm2.voice = synth.getVoices()[0];
 otm2.pitch = 1;
 otm2.rate = 1;
+otm2.lang = "en-US"
 
 otm1.voice = synth.getVoices()[0];
 otm1.pitch = 1;
 otm1.rate = 1;
+otm1.lang = "en-US"
 
 ot.voice = synth.getVoices()[0];
 ot.pitch = 1;
 ot.rate = 1;
+ot.lang = "en-US"
 
 otp1.voice = synth.getVoices()[0];
 otp1.pitch = 1;
 otp1.rate = 1;
+otp1.lang = "en-US"
 
 otp2.voice = synth.getVoices()[0];
 otp2.pitch = 1;
 otp2.rate = 1;
+otp2.lang = "en-US"
 
 otp3.voice = synth.getVoices()[0];
 otp3.pitch = 1;
 otp3.rate = 1;
+otp3.lang = "en-US"
 
 otp4.voice = synth.getVoices()[0];
 otp4.pitch = 1;
 otp4.rate = 1;
+otp4.lang = "en-US"
 
 otp5.voice = synth.getVoices()[0];
 otp5.pitch = 1;
 otp5.rate = 1;
+otp5.lang = "en-US"
 
 otp6.voice = synth.getVoices()[0];
 otp6.pitch = 1;
 otp6.rate = 1;
+otp6.lang = "en-US"
 
 otp7.voice = synth.getVoices()[0];
 otp7.pitch = 1;
 otp7.rate = 1;
+otp7.lang = "en-US"
 
 otp8.voice = synth.getVoices()[0];
 otp8.pitch = 1;
 otp8.rate = 1;
+otp8.lang = "en-US"
 
 otp9.voice = synth.getVoices()[0];
 otp9.pitch = 1;
 otp9.rate = 1;
+otp9.lang = "en-US"
 
 otp10.voice = synth.getVoices()[0];
 otp10.pitch = 1;
 otp10.rate = 1;
+otp10.lang = "en-US"
 
 otp20.voice = synth.getVoices()[0];
 otp20.pitch = 1;
 otp20.rate = 1;
+otp20.lang = "en-US"
 
 otp25.voice = synth.getVoices()[0];
 otp25.pitch = 1;
 otp25.rate = 1;
+otp25.lang = "en-US"
 
 otp26.voice = synth.getVoices()[0];
 otp26.pitch = 1;
 otp26.rate = 1;
+otp26.lang = "en-US"
 
 otp27.voice = synth.getVoices()[0];
 otp27.pitch = 1;
 otp27.rate = 1;
+otp27.lang = "en-US"
 
 otp28.voice = synth.getVoices()[0];
 otp28.pitch = 1;
 otp28.rate = 1;
+otp28.lang = "en-US"
 
 otp29.voice = synth.getVoices()[0];
 otp29.pitch = 1;
 otp29.rate = 1;
+otp29.lang = "en-US"
 
 otp30.voice = synth.getVoices()[0];
 otp30.pitch = 1;
 otp30.rate = 1;
+otp30.lang = "en-US"
 
 otp31.voice = synth.getVoices()[0];
 otp31.pitch = 1;
 otp31.rate = 1;
+otp31.lang = "en-US"
 
 // const speak = function (text) {
 //     if (!muted) {
@@ -286,6 +309,7 @@ timer_countdown.addEventListener('secondsUpdated', function (e) {
 timer_countdown.addEventListener('targetAchieved', function (e) {
     $('#countdownExample .values').html('Official top');
     // speak('official top')
+    synth.speak(ot);
     timer.start();
 });
 
