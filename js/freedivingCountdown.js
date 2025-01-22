@@ -229,42 +229,60 @@ timer.addEventListener('secondsUpdated', function (e) {
     $('#basicUsage').html(timer.getTimeValues().toString());
     var timeplus = timer.getTotalTimeValues().seconds;
     if (timeplus === 31) {
+        synth.cancel();
         synth.speak(otp31);
         timer.stop();
         // timer.reset();
     } else if (timeplus === 30) {
+        synth.cancel();
         synth.speak(otp30)
     } else if (timeplus === 29) {
+        synth.cancel();
         synth.speak(otp29)
     } else if (timeplus === 28) {
+        synth.cancel();
         synth.speak(otp28)
     } else if (timeplus === 27) {
+        synth.cancel();
         synth.speak(otp27)
     } else if (timeplus === 26) {
+        synth.cancel();
         synth.speak(otp26)
     } else if (timeplus === 25) {
+        synth.cancel();
         synth.speak(otp25)
     } else if (timeplus === 20) {
+        synth.cancel();
         synth.speak(otp20)
     } else if (timeplus === 10) {
+        synth.cancel();
         synth.speak(otp10)
     } else if (timeplus === 9) {
+        synth.cancel();
         synth.speak(otp9)
     } else if (timeplus === 8) {
+        synth.cancel();
         synth.speak(otp8)
     } else if (timeplus === 7) {
+        synth.cancel();
         synth.speak(otp7)
     } else if (timeplus === 6) {
+        synth.cancel();
         synth.speak(otp6)
     } else if (timeplus === 5) {
+        synth.cancel();
         synth.speak(otp5)
     } else if (timeplus === 4) {
+        synth.cancel();
         synth.speak(otp4)
     } else if (timeplus === 3) {
+        synth.cancel();
         synth.speak(otp3)
     } else if (timeplus === 2) {
+        synth.cancel();
         synth.speak(otp2)
     } else if (timeplus === 1) {
+        synth.cancel();
         synth.speak(otp1)
     } else {
         console.log(timeplus);
@@ -277,27 +295,38 @@ timer_countdown.addEventListener('secondsUpdated', function (e) {
     $('#countdownExample .values').html(timer_countdown.getTimeValues().toString());
     var timeleft = timer_countdown.getTotalTimeValues().seconds;
     if (timeleft === 120) {
+        synth.cancel();
         synth.speak(otm120);
         console.log("2 minutes to official top");
     } else if (timeleft === 90) {
+        synth.cancel();
         synth.speak(otm90);
     } else if (timeleft === 60) {
+        synth.cancel();
         synth.speak(otm60);
     } else if (timeleft === 30) {
+        synth.cancel();
         synth.speak(otm30)
     } else if (timeleft === 20) {
+        synth.cancel();
         synth.speak(otm20)
     } else if (timeleft === 10) {
+        synth.cancel();
         synth.speak(otm10)
     } else if (timeleft === 5) {
+        synth.cancel();
         synth.speak(otm5)
     } else if (timeleft === 4) {
+        synth.cancel();
         synth.speak(otm4)
     } else if (timeleft === 3) {
+        synth.cancel();
         synth.speak(otm3)
     } else if (timeleft === 2) {
+        synth.cancel();
         synth.speak(otm2)
     } else if (timeleft === 1) {
+        synth.cancel();
         synth.speak(otm1)
     } else {
         console.log(timeleft);
@@ -309,6 +338,7 @@ timer_countdown.addEventListener('secondsUpdated', function (e) {
 timer_countdown.addEventListener('targetAchieved', function (e) {
     $('#countdownExample .values').html('Official top');
     // speak('official top')
+    synth.cancel();
     synth.speak(ot);
     timer.start();
 });
