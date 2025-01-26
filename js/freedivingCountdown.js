@@ -1,5 +1,6 @@
 var muted = false;
 const delay = 300;
+let not_started = true;
 
 const otm120 = new Audio(src = "audio/otm120.mp3", type = "audio/mp3")
 const otm90 = new Audio(src = "audio/otm90.mp3", type = "audio/mp3")
@@ -76,26 +77,6 @@ timer.addEventListener('secondsUpdated', function (e) {
     // $('#basicUsage').html(timer.getTimeValues().toString());
     // Add timeout delay to refresh display?
     setTimeout(function () {
-        const date = new Date();
-        let hours = date.getHours();
-        let minutes = date.getMinutes();
-        let seconds = date.getSeconds();
-        var minutes_str;
-        var seconds_str;
-
-        if (minutes<10){
-            minutes_str = `0${minutes}`;
-        } else {
-            minutes_str = `${minutes}`;
-        }
-
-        if (seconds<10){
-            seconds_str = `0${seconds}`;
-        } else {
-            seconds_str = `${seconds}`;
-        }
-        const time = `${hours}:${minutes_str}:${seconds_str}`;
-        $('.clock').html(time);
         $('.countdown').html(timer.getTimeValues().toString());
 
     }, delay);
@@ -150,27 +131,6 @@ timer_countdown.addEventListener('secondsUpdated', function (e) {
     var timeleft = timer_countdown.getTotalTimeValues().seconds;
 
     setTimeout(function () {
-        const date = new Date();
-        let hours = date.getHours();
-        let minutes = date.getMinutes();
-        let seconds = date.getSeconds();
-        var minutes_str;
-        var seconds_str;
-        
-        if (minutes<10){
-            minutes_str = `0${minutes}`;
-        } else {
-            minutes_str = `${minutes}`;
-        }
-
-        if (seconds<10){
-            seconds_str = `0${seconds}`;
-        } else {
-            seconds_str = `${seconds}`;
-        }
-        const time = `${hours}:${minutes_str}:${seconds_str}`;
-
-        $('.clock').html(time);
         $('.countdown').html(timer_countdown.getTimeValues().toString());
     }, delay);
 
@@ -214,4 +174,40 @@ const freedivingCountdown = function () {
     timer_countdown.start({ countdown: true, startValues: { minutes: 2, seconds: 10 } });
 }
 
-freedivingCountdown();
+
+
+
+function display_clock() {
+    const date = new Date();
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    var minutes_str;
+    var seconds_str;
+
+    if (minutes < 10) {
+        minutes_str = `0${minutes}`;
+    } else {
+        minutes_str = `${minutes}`;
+    }
+
+    if (seconds < 10) {
+        seconds_str = `0${seconds}`;
+    } else {
+        seconds_str = `${seconds}`;
+    }
+    const time = `${hours}:${minutes_str}:${seconds_str}`;
+
+    setTimeout(function(){
+        $('.clock').html(time);
+    }, delay)
+    
+    if (not_started){
+        freedivingCountdown();
+        not_started = false;
+    }
+
+
+}
+
+setInterval(display_clock, 1000);
