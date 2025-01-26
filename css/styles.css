@@ -17,37 +17,37 @@
 }
 
 @media (min-width: 100px) { 
-  .countdown{
+  .countdown, .clock{
     font-size: 40px;
   }
  }
 
 @media (min-width: 576px) { 
-  .countdown{
+  .countdown, .clock{
     font-size: 70px;
   }
  }
 
 @media (min-width: 768px) { 
-  .countdown{
+  .countdown, .clock{
     font-size: 90px;
   }
  }
 
 @media (min-width: 992px) { 
-  .countdown{
+  .countdown, .clock{
     font-size: 110px;
   }
  }
 
 @media (min-width: 1200px) { 
-  .countdown{
+  .countdown, .clock{
     font-size: 150px;
   }
  }
 
 @media (min-width: 1400px) { 
-  .countdown{
+  .countdown, .clock{
     font-size: 180px;
   }
  }
