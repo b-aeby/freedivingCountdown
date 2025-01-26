@@ -1,36 +1,36 @@
 var muted = false;
 const delay = 300;
 
-const otm120 = new Audio(src="audio/otm120.mp3", type="audio/mp3")
-const otm90 = new Audio(src="audio/otm90.mp3", type="audio/mp3")
-const otm60 = new Audio(src="audio/otm60.mp3", type="audio/mp3")
-const otm30 = new Audio(src="audio/otm30.mp3", type="audio/mp3")
-const otm20 = new Audio(src="audio/otm20.mp3", type="audio/mp3")
-const otm10 = new Audio(src="audio/otm10.mp3", type="audio/mp3")
-const otm5 = new Audio(src="audio/otm5.mp3", type="audio/mp3")
-const otm4 = new Audio(src="audio/otm4.mp3", type="audio/mp3")
-const otm3 = new Audio(src="audio/otm3.mp3", type="audio/mp3")
-const otm2 = new Audio(src="audio/otm2.mp3", type="audio/mp3")
-const otm1 = new Audio(src="audio/otm1.mp3", type="audio/mp3")
-const ot = new Audio(src="audio/ot.mp3", type="audio/mp3")
-const otp1 = new Audio(src="audio/otp1.mp3", type="audio/mp3")
-const otp2 = new Audio(src="audio/otp2.mp3", type="audio/mp3")
-const otp3 = new Audio(src="audio/otp3.mp3", type="audio/mp3")
-const otp4 = new Audio(src="audio/otp4.mp3", type="audio/mp3")
-const otp5 = new Audio(src="audio/otp5.mp3", type="audio/mp3")
-const otp6 = new Audio(src="audio/otp6.mp3", type="audio/mp3")
-const otp7 = new Audio(src="audio/otp7.mp3", type="audio/mp3")
-const otp8 = new Audio(src="audio/otp8.mp3", type="audio/mp3")
-const otp9 = new Audio(src="audio/otp9.mp3", type="audio/mp3")
-const otp10 = new Audio(src="audio/otp10.mp3", type="audio/mp3")
-const otp20 = new Audio(src="audio/otp20.mp3", type="audio/mp3")
-const otp25 = new Audio(src="audio/otp25.mp3", type="audio/mp3")
-const otp26 = new Audio(src="audio/otp26.mp3", type="audio/mp3")
-const otp27 = new Audio(src="audio/otp27.mp3", type="audio/mp3")
-const otp28 = new Audio(src="audio/otp28.mp3", type="audio/mp3")
-const otp29 = new Audio(src="audio/otp29.mp3", type="audio/mp3")
-const otp30 = new Audio(src="audio/otp30.mp3", type="audio/mp3")
-const otp31 = new Audio(src="audio/otp31.mp3", type="audio/mp3")
+const otm120 = new Audio(src = "audio/otm120.mp3", type = "audio/mp3")
+const otm90 = new Audio(src = "audio/otm90.mp3", type = "audio/mp3")
+const otm60 = new Audio(src = "audio/otm60.mp3", type = "audio/mp3")
+const otm30 = new Audio(src = "audio/otm30.mp3", type = "audio/mp3")
+const otm20 = new Audio(src = "audio/otm20.mp3", type = "audio/mp3")
+const otm10 = new Audio(src = "audio/otm10.mp3", type = "audio/mp3")
+const otm5 = new Audio(src = "audio/otm5.mp3", type = "audio/mp3")
+const otm4 = new Audio(src = "audio/otm4.mp3", type = "audio/mp3")
+const otm3 = new Audio(src = "audio/otm3.mp3", type = "audio/mp3")
+const otm2 = new Audio(src = "audio/otm2.mp3", type = "audio/mp3")
+const otm1 = new Audio(src = "audio/otm1.mp3", type = "audio/mp3")
+const ot = new Audio(src = "audio/ot.mp3", type = "audio/mp3")
+const otp1 = new Audio(src = "audio/otp1.mp3", type = "audio/mp3")
+const otp2 = new Audio(src = "audio/otp2.mp3", type = "audio/mp3")
+const otp3 = new Audio(src = "audio/otp3.mp3", type = "audio/mp3")
+const otp4 = new Audio(src = "audio/otp4.mp3", type = "audio/mp3")
+const otp5 = new Audio(src = "audio/otp5.mp3", type = "audio/mp3")
+const otp6 = new Audio(src = "audio/otp6.mp3", type = "audio/mp3")
+const otp7 = new Audio(src = "audio/otp7.mp3", type = "audio/mp3")
+const otp8 = new Audio(src = "audio/otp8.mp3", type = "audio/mp3")
+const otp9 = new Audio(src = "audio/otp9.mp3", type = "audio/mp3")
+const otp10 = new Audio(src = "audio/otp10.mp3", type = "audio/mp3")
+const otp20 = new Audio(src = "audio/otp20.mp3", type = "audio/mp3")
+const otp25 = new Audio(src = "audio/otp25.mp3", type = "audio/mp3")
+const otp26 = new Audio(src = "audio/otp26.mp3", type = "audio/mp3")
+const otp27 = new Audio(src = "audio/otp27.mp3", type = "audio/mp3")
+const otp28 = new Audio(src = "audio/otp28.mp3", type = "audio/mp3")
+const otp29 = new Audio(src = "audio/otp29.mp3", type = "audio/mp3")
+const otp30 = new Audio(src = "audio/otp30.mp3", type = "audio/mp3")
+const otp31 = new Audio(src = "audio/otp31.mp3", type = "audio/mp3")
 
 otm120.preload = 'auto';
 otm120.play();
@@ -75,10 +75,31 @@ var timer = new easytimer.Timer();
 timer.addEventListener('secondsUpdated', function (e) {
     // $('#basicUsage').html(timer.getTimeValues().toString());
     // Add timeout delay to refresh display?
-    setTimeout(function(){
+    setTimeout(function () {
+        const date = new Date();
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+        var minutes_str;
+        var seconds_str;
+
+        if (minutes<10){
+            minutes_str = `0${minutes}`;
+        } else {
+            minutes_str = `${minutes}`;
+        }
+
+        if (seconds<10){
+            seconds_str = `0${seconds}`;
+        } else {
+            seconds_str = `${seconds}`;
+        }
+        const time = `${hours}:${minutes_str}:${seconds_str}`;
+        $('.clock').html(time);
         $('.countdown').html(timer.getTimeValues().toString());
+
     }, delay);
-    
+
     var timeplus = timer.getTotalTimeValues().seconds;
     if (timeplus === 31) {
         otp31.play();
@@ -128,7 +149,28 @@ var timer_countdown = new easytimer.Timer();
 timer_countdown.addEventListener('secondsUpdated', function (e) {
     var timeleft = timer_countdown.getTotalTimeValues().seconds;
 
-    setTimeout(function(){
+    setTimeout(function () {
+        const date = new Date();
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+        var minutes_str;
+        var seconds_str;
+        
+        if (minutes<10){
+            minutes_str = `0${minutes}`;
+        } else {
+            minutes_str = `${minutes}`;
+        }
+
+        if (seconds<10){
+            seconds_str = `0${seconds}`;
+        } else {
+            seconds_str = `${seconds}`;
+        }
+        const time = `${hours}:${minutes_str}:${seconds_str}`;
+
+        $('.clock').html(time);
         $('.countdown').html(timer_countdown.getTimeValues().toString());
     }, delay);
 
@@ -158,10 +200,6 @@ timer_countdown.addEventListener('secondsUpdated', function (e) {
     } else {
         console.log(timeleft);
     }
-
-    
-    
-
 });
 
 

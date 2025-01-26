@@ -4,8 +4,14 @@
   font: 1em sans-serif;
 }
 
-.countdown{
+.clock{
   font-size: 180px;
+  font-family: digitalNumbers, sans-serif, monospace;
+  color:#000000;
+}
+
+.countdown{
+  font-size: 100px;
   font-family: digitalNumbers, sans-serif, monospace;
   color:#e01515;
 }
