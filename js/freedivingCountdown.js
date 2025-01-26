@@ -170,8 +170,8 @@ timer_countdown.addEventListener('targetAchieved', function (e) {
     timer.start();
 });
 
-const freedivingCountdown = function () {
-    timer_countdown.start({ countdown: true, startValues: { minutes: 2, seconds: 10 } });
+const freedivingCountdown = function (sec) {
+    timer_countdown.start({ countdown: true, startValues: { minutes: 2, seconds: 60-sec } });
 }
 
 
@@ -203,7 +203,7 @@ function display_clock() {
     }, delay)
     
     if (not_started){
-        freedivingCountdown();
+        freedivingCountdown(seconds);
         not_started = false;
     }
 
