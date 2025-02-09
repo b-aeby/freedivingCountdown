@@ -10,8 +10,20 @@
   color:#000000;
 }
 
+.officialTime{
+  font-size: 30px;
+  font-family: digitalNumbers, sans-serif, monospace;
+  color:#000000;
+}
+
 .countdown{
   font-size: 100px;
+  font-family: digitalNumbers, sans-serif, monospace;
+  color:#e01515;
+}
+
+.nextStart {
+  font-size: 30px;
   font-family: digitalNumbers, sans-serif, monospace;
   color:#e01515;
 }
@@ -20,11 +32,19 @@
   .countdown, .clock{
     font-size: 40px;
   }
+
+  .officialTime, .nextStart{
+    font-size: 10px;
+  }
  }
 
 @media (min-width: 576px) { 
   .countdown, .clock{
     font-size: 70px;
+  }
+
+  .officialTime, .nextStart{
+    font-size: 14px;
   }
  }
 
@@ -32,11 +52,19 @@
   .countdown, .clock{
     font-size: 90px;
   }
+
+  .officialTime, .nextStart{
+    font-size: 18px;
+  }
  }
 
 @media (min-width: 992px) { 
   .countdown, .clock{
     font-size: 110px;
+  }
+
+  .officialTime, .nextStart{
+    font-size: 22px;
   }
  }
 
@@ -44,10 +72,18 @@
   .countdown, .clock{
     font-size: 150px;
   }
+
+  .officialTime, .nextStart{
+    font-size: 24px;
+  }
  }
 
 @media (min-width: 1400px) { 
   .countdown, .clock{
     font-size: 180px;
+  }
+
+  .officialTime, .nextStart{
+    font-size: 30px;
   }
  }

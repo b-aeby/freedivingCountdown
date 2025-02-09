@@ -2,74 +2,60 @@ var muted = false;
 const delay = 300;
 let not_started = true;
 
-const otm120 = new Audio(src = "audio/otm120.mp3", type = "audio/mp3")
-const otm90 = new Audio(src = "audio/otm90.mp3", type = "audio/mp3")
-const otm60 = new Audio(src = "audio/otm60.mp3", type = "audio/mp3")
-const otm30 = new Audio(src = "audio/otm30.mp3", type = "audio/mp3")
-const otm20 = new Audio(src = "audio/otm20.mp3", type = "audio/mp3")
-const otm10 = new Audio(src = "audio/otm10.mp3", type = "audio/mp3")
-const otm5 = new Audio(src = "audio/otm5.mp3", type = "audio/mp3")
-const otm4 = new Audio(src = "audio/otm4.mp3", type = "audio/mp3")
-const otm3 = new Audio(src = "audio/otm3.mp3", type = "audio/mp3")
-const otm2 = new Audio(src = "audio/otm2.mp3", type = "audio/mp3")
-const otm1 = new Audio(src = "audio/otm1.mp3", type = "audio/mp3")
-const ot = new Audio(src = "audio/ot.mp3", type = "audio/mp3")
-const otp1 = new Audio(src = "audio/otp1.mp3", type = "audio/mp3")
-const otp2 = new Audio(src = "audio/otp2.mp3", type = "audio/mp3")
-const otp3 = new Audio(src = "audio/otp3.mp3", type = "audio/mp3")
-const otp4 = new Audio(src = "audio/otp4.mp3", type = "audio/mp3")
-const otp5 = new Audio(src = "audio/otp5.mp3", type = "audio/mp3")
-const otp6 = new Audio(src = "audio/otp6.mp3", type = "audio/mp3")
-const otp7 = new Audio(src = "audio/otp7.mp3", type = "audio/mp3")
-const otp8 = new Audio(src = "audio/otp8.mp3", type = "audio/mp3")
-const otp9 = new Audio(src = "audio/otp9.mp3", type = "audio/mp3")
-const otp10 = new Audio(src = "audio/otp10.mp3", type = "audio/mp3")
-const otp20 = new Audio(src = "audio/otp20.mp3", type = "audio/mp3")
-const otp25 = new Audio(src = "audio/otp25.mp3", type = "audio/mp3")
-const otp26 = new Audio(src = "audio/otp26.mp3", type = "audio/mp3")
-const otp27 = new Audio(src = "audio/otp27.mp3", type = "audio/mp3")
-const otp28 = new Audio(src = "audio/otp28.mp3", type = "audio/mp3")
-const otp29 = new Audio(src = "audio/otp29.mp3", type = "audio/mp3")
-const otp30 = new Audio(src = "audio/otp30.mp3", type = "audio/mp3")
-const otp31 = new Audio(src = "audio/otp31.mp3", type = "audio/mp3")
+const audio_m120 = new Audio(src = "audio/otm120.mp3", type = "audio/mp3")
+const audio_m90 = new Audio(src = "audio/otm90.mp3", type = "audio/mp3")
+const audio_m60 = new Audio(src = "audio/otm60.mp3", type = "audio/mp3")
+const audio_m30 = new Audio(src = "audio/otm30.mp3", type = "audio/mp3")
+const audio_ot = new Audio(src = "audio/ot.mp3", type = "audio/mp3")
+const audio_plus_1 = new Audio(src = "audio/plus_1.mp3", type = "audio/mp3")
+const audio_start_cancelled = new Audio(src = "audio/start_cancelled.mp3", type = "audio/mp3")
 
-otm120.preload = 'auto';
-otm120.play();
-otm120.pause();
+const audio_1 = new Audio(src = "audio/1.mp3", type = "audio/mp3")
+const audio_2 = new Audio(src = "audio/2.mp3", type = "audio/mp3")
+const audio_3 = new Audio(src = "audio/3.mp3", type = "audio/mp3")
+const audio_4 = new Audio(src = "audio/4.mp3", type = "audio/mp3")
+const audio_5 = new Audio(src = "audio/5.mp3", type = "audio/mp3")
+const audio_6 = new Audio(src = "audio/6.mp3", type = "audio/mp3")
+const audio_7 = new Audio(src = "audio/7.mp3", type = "audio/mp3")
+const audio_8 = new Audio(src = "audio/8.mp3", type = "audio/mp3")
+const audio_9 = new Audio(src = "audio/9.mp3", type = "audio/mp3")
+const audio_10 = new Audio(src = "audio/10.mp3", type = "audio/mp3")
+const audio_20 = new Audio(src = "audio/20.mp3", type = "audio/mp3")
+const audio_25 = new Audio(src = "audio/25.mp3", type = "audio/mp3")
+const audio_26 = new Audio(src = "audio/26.mp3", type = "audio/mp3")
+const audio_27 = new Audio(src = "audio/27.mp3", type = "audio/mp3")
+const audio_28 = new Audio(src = "audio/28.mp3", type = "audio/mp3")
+const audio_29 = new Audio(src = "audio/29.mp3", type = "audio/mp3")
+const audio_30 = new Audio(src = "audio/30.mp3", type = "audio/mp3")
 
-otm90.preload = 'auto';
-otm60.preload = 'auto';
-otm30.preload = 'auto';
-otm20.preload = 'auto';
-otm10.preload = 'auto';
-otm5.preload = 'auto';
-otm4.preload = 'auto';
-otm3.preload = 'auto';
-otm2.preload = 'auto';
-otm1.preload = 'auto';
-ot.preload = 'auto';
-otp1.preload = 'auto';
-otp2.preload = 'auto';
-otp3.preload = 'auto';
-otp4.preload = 'auto';
-otp5.preload = 'auto';
-otp6.preload = 'auto';
+audio_m120.preload = 'auto';
+audio_m120.play();
+audio_m120.pause();
 
-otp7.preload = 'auto';
-otp7.play();
-otp7.pause();
+audio_m90.preload = 'auto';
+audio_m60.preload = 'auto';
+audio_m30.preload = 'auto';
+audio_ot.preload = 'auto';
+audio_plus_1.preload = 'auto';
+audio_start_cancelled.preload = 'auto';
 
-otp8.preload = 'auto';
-otp9.preload = 'auto';
-otp10.preload = 'auto';
-otp20.preload = 'auto';
-otp25.preload = 'auto';
-otp26.preload = 'auto';
-otp27.preload = 'auto';
-otp28.preload = 'auto';
-otp29.preload = 'auto';
-otp30.preload = 'auto';
-otp31.preload = 'auto';
+audio_1.preload = 'auto';
+audio_2.preload = 'auto';
+audio_3.preload = 'auto';
+audio_4.preload = 'auto';
+audio_5.preload = 'auto';
+audio_6.preload = 'auto';
+audio_7.preload = 'auto';
+audio_8.preload = 'auto';
+audio_9.preload = 'auto';
+audio_10.preload = 'auto';
+audio_20.preload = 'auto';
+audio_25.preload = 'auto';
+audio_26.preload = 'auto';
+audio_27.preload = 'auto';
+audio_28.preload = 'auto';
+audio_29.preload = 'auto';
+audio_30.preload = 'auto';
 
 var timer = new easytimer.Timer();
 
@@ -83,43 +69,43 @@ timer.addEventListener('secondsUpdated', function (e) {
 
     var timeplus = timer.getTotalTimeValues().seconds;
     if (timeplus === 31) {
-        otp31.play();
+        audio_start_cancelled.play();
         timer.stop();
         // timer.reset();
     } else if (timeplus === 30) {
-        otp30.play();
+        audio_30.play();
     } else if (timeplus === 29) {
-        otp29.play();
+        audio_29.play();
     } else if (timeplus === 28) {
-        otp28.play();
+        audio_28.play();
     } else if (timeplus === 27) {
-        otp27.play();
+        audio_27.play();
     } else if (timeplus === 26) {
-        otp26.play();
+        audio_26.play();
     } else if (timeplus === 25) {
-        otp25.play();
+        audio_25.play();
     } else if (timeplus === 20) {
-        otp20.play();
+        audio_20.play();
     } else if (timeplus === 10) {
-        otp10.play();
+        audio_10.play();
     } else if (timeplus === 9) {
-        otp9.play();
+        audio_9.play();
     } else if (timeplus === 8) {
-        otp8.play();
+        audio_8.play();
     } else if (timeplus === 7) {
-        otp7.play();
+        audio_7.play();
     } else if (timeplus === 6) {
-        otp6.play();
+        audio_6.play();
     } else if (timeplus === 5) {
-        otp5.play();
+        audio_5.play();
     } else if (timeplus === 4) {
-        otp4.play();
+        audio_4.play();
     } else if (timeplus === 3) {
-        otp3.play();
+        audio_3.play();
     } else if (timeplus === 2) {
-        otp2.play();
+        audio_2.play();
     } else if (timeplus === 1) {
-        otp1.play();
+        audio_plus_1.play();
     } else {
         console.log(timeplus);
     }
@@ -135,28 +121,28 @@ timer_countdown.addEventListener('secondsUpdated', function (e) {
     }, delay);
 
     if (timeleft === 120) {
-        otm120.play();
+        audio_m120.play();
         console.log("2 minutes to official top");
     } else if (timeleft === 90) {
-        otm90.play();
+        audio_m90.play();
     } else if (timeleft === 60) {
-        otm60.play();
+        audio_m60.play();
     } else if (timeleft === 30) {
-        otm30.play();
+        audio_m30.play();
     } else if (timeleft === 20) {
-        otm20.play();
+        audio_20.play();
     } else if (timeleft === 10) {
-        otm10.play();
+        audio_10.play();
     } else if (timeleft === 5) {
-        otm5.play();
+        audio_5.play();
     } else if (timeleft === 4) {
-        otm4.play();
+        audio_4.play();
     } else if (timeleft === 3) {
-        otm3.play();
+        audio_3.play();
     } else if (timeleft === 2) {
-        otm2.play();
+        audio_2.play();
     } else if (timeleft === 1) {
-        otm1.play();
+        audio_1.play();
     } else {
         console.log(timeleft);
     }
@@ -166,7 +152,7 @@ timer_countdown.addEventListener('secondsUpdated', function (e) {
 timer_countdown.addEventListener('targetAchieved', function (e) {
     $('#countdownExample .values').html('Official top');
     // speak('official top')
-    ot.play();
+    audio_ot.play();
     timer.start();
 });
 
