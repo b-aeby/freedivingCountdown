@@ -216,7 +216,7 @@ function display_clock() {
 var ms_offset = new Date().getMilliseconds();
 setTimeout(function(){
     setInterval(display_clock, 1000);
-}, ms_offset + 50)
+}, ms_offset + 50) // 50 ms added to avoid discrepancies between clock and timers
 
 
 
