@@ -1,5 +1,4 @@
-var muted = false;
-const delay = 150;
+const delay = 0;
 
 var timer_display = '--:--:--';
 
@@ -58,6 +57,43 @@ audio_28.preload = 'auto';
 audio_29.preload = 'auto';
 audio_30.preload = 'auto';
 
+var muted = false;
+
+const toggle_mute = () => {
+    
+    console.log('Toggle mute!');
+        if (muted == false) {
+            muted = true;
+            $("#btn-mute .fa-volume-off").addClass('d-none')
+            $("#btn-mute .fa-volume-xmark").removeClass('d-none')
+        } else {
+            muted = false;
+            $("#btn-mute .fa-volume-off").removeClass('d-none')
+            $("#btn-mute .fa-volume-xmark").addClass('d-none')
+        }
+}
+
+
+addEventListener("keypress", (event) => {
+    console.log(event.code);
+    if (event.code == "KeyM") {
+        toggle_mute();  
+    }
+});
+
+$("#btn-mute").on("click", function(event){
+    event.preventDefault();
+    toggle_mute( );
+});
+
+const play_audio = (sound) => {
+    if(!muted){
+        setTimeout(function(){
+            sound.play();
+        }, delay);
+    }
+}
+
 class aidaCountdown {
     constructor(year, month, day, hour, minute, second) {
         this.startTime = new Date(year, month, day, hour, minute, second);
@@ -78,28 +114,29 @@ class aidaCountdown {
         }
 
         if (timeleft === 120) {
-            setTimeout(function(){audio_m120.play();}, delay);
+            // setTimeout(function(){audio_m120.play();}, delay);
             console.log("2 minutes to official top");
+            play_audio(audio_m120);
         } else if (timeleft === 90) {
-            setTimeout(function(){audio_m90.play();}, delay);
+            play_audio(audio_m90);
         } else if (timeleft === 60) {
-            setTimeout(function(){audio_m60.play();}, delay);
+            play_audio(audio_m60);
         } else if (timeleft === 30) {
-            setTimeout(function(){audio_m30.play();}, delay);
+            play_audio(audio_m30);
         } else if (timeleft === 20) {
-            setTimeout(function(){audio_20.play();}, delay);
+            play_audio(audio_20);
         } else if (timeleft === 10) {
-            setTimeout(function(){audio_10.play();}, delay);
+            play_audio(audio_10);
         } else if (timeleft === 5) {
-            setTimeout(function(){audio_5.play();}, delay);
+            play_audio(audio_5);
         } else if (timeleft === 4) {
-            setTimeout(function(){audio_4.play();}, delay);
+            play_audio(audio_4);
         } else if (timeleft === 3) {
-            setTimeout(function(){audio_3.play();}, delay);
+            play_audio(audio_3);
         } else if (timeleft === 2) {
-            setTimeout(function(){audio_2.play();}, delay);
+            play_audio(audio_2);
         } else if (timeleft === 1) {
-            setTimeout(function(){audio_1.play();}, delay);
+            play_audio(audio_1);
         } else {
             console.log(timeleft);
         }
@@ -108,7 +145,7 @@ class aidaCountdown {
     countDownAchieved = (event) => {
         console.log('countDownAchieved!', this);
         this.timer_countUp.start();
-        setTimeout(function(){audio_ot.play();}, delay);     
+        play_audio(audio_ot);
     }
 
     countUpSecond = (event) => {
@@ -116,44 +153,44 @@ class aidaCountdown {
         var timeplus = this.timer_countUp.getTotalTimeValues().seconds;
         timer_display = this.timer_countUp.getTimeValues().toString()
         if (timeplus === 31) {
-            setTimeout(function(){audio_start_cancelled.play();}, delay);
+            play_audio(audio_start_cancelled);
             this.timer_countUp.stop();
             timer_display = '--:--:--';
             // timer.reset();
         } else if (timeplus === 30) {
-            setTimeout(function(){audio_30.play();}, delay);
+            play_audio(audio_30);
         } else if (timeplus === 29) {
-            setTimeout(function(){audio_29.play();}, delay);
+            play_audio(audio_29);
         } else if (timeplus === 28) {
-            setTimeout(function(){audio_28.play();}, delay);
+            play_audio(audio_28);
         } else if (timeplus === 27) {
-            setTimeout(function(){audio_27.play();}, delay);
+            play_audio(audio_27);
         } else if (timeplus === 26) {
-            setTimeout(function(){audio_26.play();}, delay);
+            play_audio(audio_26);
         } else if (timeplus === 25) {
-            setTimeout(function(){audio_25.play();}, delay);
+            play_audio(audio_25);
         } else if (timeplus === 20) {
-            setTimeout(function(){audio_20.play();}, delay);
+            play_audio(audio_20);
         } else if (timeplus === 10) {
-            setTimeout(function(){audio_10.play();}, delay);
+            play_audio(audio_10);
         } else if (timeplus === 9) {
-            setTimeout(function(){audio_9.play();}, delay);
+            play_audio(audio_9);
         } else if (timeplus === 8) {
-            setTimeout(function(){audio_8.play();}, delay);
+            play_audio(audio_8);
         } else if (timeplus === 7) {
-            setTimeout(function(){audio_7.play();}, delay);
+            play_audio(audio_7);
         } else if (timeplus === 6) {
-            setTimeout(function(){audio_6.play();}, delay);
+            play_audio(audio_6);
         } else if (timeplus === 5) {
-            setTimeout(function(){audio_5.play();}, delay);
+            play_audio(audio_5);
         } else if (timeplus === 4) {
-            setTimeout(function(){audio_4.play();}, delay);
+            play_audio(audio_4);
         } else if (timeplus === 3) {
-            setTimeout(function(){audio_3.play();}, delay);
+            play_audio(audio_3);
         } else if (timeplus === 2) {
-            setTimeout(function(){audio_2.play();}, delay);
+            play_audio(audio_2);
         } else if (timeplus === 1) {
-            setTimeout(function(){audio_plus_1.play();}, delay);
+            play_audio(audio_plus_1);
         } else {
             console.log(timeplus);
         }
@@ -216,7 +253,7 @@ function display_clock() {
 var ms_offset = new Date().getMilliseconds();
 setTimeout(function(){
     setInterval(display_clock, 1000);
-}, ms_offset + 50) // 50 ms added to avoid discrepancies between clock and timers
+}, ms_offset + 10) // x ms added to avoid discrepancies between clock and timers
 
 
 

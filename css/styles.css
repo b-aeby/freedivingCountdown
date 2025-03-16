@@ -32,6 +32,9 @@
   width : 60%;
 }
 
+#btn-mute {
+  min-width: 40px !important;
+}
 
 #startlist-table .tabulator-row .tabulator-cell .tabulator-data-tree-control {
   border: 2px solid #e01515 !important;

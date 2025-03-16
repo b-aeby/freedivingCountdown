@@ -23,9 +23,221 @@ var startlist = [
         ]
     },
     {
-        id: 4, type: "DYN/DYNB", time: "13:12", zone: "", gender:"", lastname: "", firstname: "", _children: [
+        id: 4, type: "STA", time: "11:21", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "SUI", lastname: "Falciola", firstname: "Vanessa" },
+            { zone: "B", gender:"f", country: "SUI", lastname: "Argenziano", firstname: "Simone" },
+            { zone: "C", gender:"m", country: "SUI", lastname: "Bächtold", firstname: "Thomas" },
+            { zone: "D", gender:"m", country: "FRA", lastname: "Glaser", firstname: "David" }
+        ]
+    },
+    {
+        id: 5, type: "STA", time: "11:33", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "SUI", lastname: "Kollep", firstname: "Lara" },
+            { zone: "B", gender:"f", country: "SUI", lastname: "Autunno", firstname: "Elsa" },
+            { zone: "C", gender:"f", country: "MAR", lastname: "Chellai", firstname: "Oulfa" },
+            { zone: "D", gender:"f", country: "SUI", lastname: "Melileo", firstname: "Andrea" }
+        ]
+    },
+    {
+        id: 6, type: "STA", time: "11:45", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"m", country: "ESP", lastname: "Llibre", firstname: "Oleguer" },
+            { zone: "B", gender:"m", country: "TUR", lastname: "Pelenk", firstname: "Okan" },
+            { zone: "C", gender:"m", country: "SUI", lastname: "Amiot", firstname: "Jonathan" },
+            { zone: "D", gender:"m", country: "SUI", lastname: "Fonjallaz", firstname: "David" }
+        ]
+    },
+    {
+        id: 7, type: "STA", time: "11:57", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"m", country: "BEL", lastname: "Hubert", firstname: "Lancelot" },
+            { zone: "B", gender:"m", country: "SUI", lastname: "Piguet", firstname: "Piguet" },
+            { zone: "C", gender:"m", country: "SUI", lastname: "Gunzenhauser", firstname: "Ronny" },
+            { zone: "D", gender:"", country: "", lastname: "", firstname: "" }
+        ]
+    },
+    {
+        id: 8, type: "DYN/DYNB", time: "13:12", zone: "", gender:"", lastname: "", firstname: "", _children: [
             { zone: "A", gender:"", country: "", lastname: "Starter1", firstname: "" },
             { zone: "B", gender:"", country: "", lastname: "Starter2", firstname: "" }
+        ]
+    },
+    {
+        id: 9, type: "DYN/DYNB", time: "13:20", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "GER", lastname: "Schmitt", firstname: "Anna-Karina" },
+            { zone: "B", gender:"m", country: "GBR", lastname: "Palmer", firstname: "Darryl" }
+        ]
+    },
+    {
+        id: 10, type: "DYN/DYNB", time: "13:28", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "SUI", lastname: "Richoz", firstname: "Fanny" },
+            { zone: "B", gender:"m", country: "SUI", lastname: "Langer", firstname: "Chris " }
+        ]
+    },
+    {
+        id: 11, type: "DYN/DYNB", time: "13:36", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "SUI", lastname: "Mühlberg", firstname: "Sarah Loraine" },
+            { zone: "B", gender:"f", country: "GER", lastname: "Lodes", firstname: "Melissa" }
+        ]
+    },
+    {
+        id: 12, type: "DYN/DYNB", time: "13:44", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "SUI", lastname: "Cid", firstname: "Isabelle" },
+            { zone: "B", gender:"f", country: "SUI", lastname: "Robert", firstname: "Lucy" }
+        ]
+    },
+    {
+        id: 13, type: "DYN/DYNB", time: "13:52", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "SUI", lastname: "Argenziano", firstname: "Simone" },
+            { zone: "B", gender:"m", country: "SUI", lastname: "Brauchli", firstname: "Christian" }
+        ]
+    },
+    {
+        id: 14, type: "DYN/DYNB", time: "14:00", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"m", country: "SUI", lastname: "Morel", firstname: "Ivan" },
+            { zone: "B", gender:"m", country: "SUI", lastname: "Logean", firstname: "Antoine" }
+        ]
+    },
+    {
+        id: 15, type: "DYN/DYNB", time: "14:08", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "FRA", lastname: "Maire", firstname: "Christelle" },
+            { zone: "B", gender:"f", country: "FRA", lastname: "Regnier", firstname: "Manon" }
+        ]
+    },
+    {
+        id: 16, type: "DYN/DYNB", time: "14:16", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "SUI", lastname: "Stüssi", firstname: "Gina" },
+            { zone: "B", gender:"f", country: "SUI", lastname: "Falciola", firstname: "Vanessa" }
+        ]
+    },
+    {
+        id: 17, type: "DYN/DYNB", time: "14:24", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "MAR", lastname: "Chellai", firstname: "Oulfa" },
+            { zone: "B", gender:"f", country: "SUI", lastname: "Giuntini", firstname: "Violante" }
+        ]
+    },
+    {
+        id: 18, type: "DYN/DYNB", time: "14:32", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "SUI", lastname: "Stalder", firstname: "Tatiana" },
+            { zone: "B", gender:"m", country: "ITA", lastname: "Bertini", firstname: "Massimiliano" }
+        ]
+    },
+    {
+        id: 19, type: "DYN/DYNB", time: "14:40", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"m", country: "SUI", lastname: "Perrenoud", firstname: "Dylan" },
+            { zone: "B", gender:"f", country: "BOL", lastname: "Duenas", firstname: "Erika" }
+        ]
+    },
+    {
+        id: 20, type: "DYN/DYNB", time: "14:48", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "SUI", lastname: "Walter", firstname: "Heidi" },
+            { zone: "B", gender:"f", country: "SUI", lastname: "Kollep", firstname: "Lara" }
+        ]
+    },
+    {
+        id: 21, type: "DYN/DYNB", time: "14:46", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"m", country: "FRA", lastname: "Glaser", firstname: "David" },
+            { zone: "B", gender:"m", country: "ESP", lastname: "Llibre", firstname: "Oleguer" }
+        ]
+    },
+    {
+        id: 22, type: "DYN/DYNB", time: "15:04", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"m", country: "GER", lastname: "Rodewald", firstname: "Adam Jerzy" },
+            { zone: "B", gender:"m", country: "SUI", lastname: "Witschi", firstname: "Alex" }
+        ]
+    },
+    {
+        id: 23, type: "DYN/DYNB", time: "15:12", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"m", country: "SUI", lastname: "Amiot", firstname: "Jonathan" },
+            { zone: "B", gender:"m", country: "SUI", lastname: "Plüss", firstname: "Jonas" }
+        ]
+    },
+    {
+        id: 24, type: "DYN/DYNB", time: "15:20", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"m", country: "SUI", lastname: "Dupont", firstname: "Julien" },
+            { zone: "B", gender:"f", country: "SUI", lastname: "Schmed", firstname: "Corina" }
+        ]
+    },
+    {
+        id: 25, type: "DYN/DYNB", time: "15:28", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"m", country: "TUR", lastname: "Pelenk", firstname: "Okan" },
+            { zone: "B", gender:"m", country: "SUI", lastname: "Fonjallaz", firstname: "David" }
+        ]
+    },
+    {
+        id: 26, type: "DYN/DYNB", time: "15:36", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"m", country: "SUI", lastname: "Piguet", firstname: "Hugo" },
+            { zone: "B", gender:"f", country: "ITA", lastname: "Troia", firstname: "Roberta" }
+        ]
+    },
+    {
+        id: 27, type: "DYN/DYNB", time: "15:44", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "SUI", lastname: "Vecera", firstname: "Marina" },
+            { zone: "B", gender:"", country: "", lastname: "", firstname: "" }
+        ]
+    },
+    {
+        id: 28, type: "DNF", time: "16:10", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"", country: "", lastname: "Starter1", firstname: "" },
+            { zone: "B", gender:"", country: "", lastname: "Starter2", firstname: "" }
+        ]
+    },
+    {
+        id: 29, type: "DNF", time: "16:18", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"m", country: "SUI", lastname: "Langer", firstname: "Chris" },
+            { zone: "B", gender:"f", country: "SUI", lastname: "Dubois", firstname: "Oxana" }
+        ]
+    },
+    {
+        id: 30, type: "DNF", time: "16:26", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "SUI", lastname: "Giuntini", firstname: "Violante" },
+            { zone: "B", gender:"f", country: "GER", lastname: "Lodes", firstname: "Melissa" }
+        ]
+    },
+    {
+        id: 31, type: "DNF", time: "16:34", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "SUI", lastname: "Cid", firstname: "Isabelle" },
+            { zone: "B", gender:"f", country: "SUI", lastname: "Robert", firstname: "Lucy" }
+        ]
+    },
+    {
+        id: 32, type: "DNF", time: "16:42", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "SUI", lastname: "Richoz", firstname: "Fanny" },
+            { zone: "B", gender:"m", country: "SUI", lastname: "Morel", firstname: "Ivan" }
+        ]
+    },
+    {
+        id: 33, type: "DNF", time: "16:50", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "SUI", lastname: "Walter", firstname: "Heidi" },
+            { zone: "B", gender:"f", country: "SUI", lastname: "Melileo", firstname: "Andrea" }
+        ]
+    },
+    {
+        id: 34, type: "DNF", time: "16:58", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "SUI", lastname: "Stalder", firstname: "Tatiana" },
+            { zone: "B", gender:"m", country: "SUI", lastname: "Perrenoud", firstname: "Dylan" }
+        ]
+    },
+    {
+        id: 35, type: "DNF", time: "17:06", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "ITA", lastname: "Troia", firstname: "Roberta" },
+            { zone: "B", gender:"m", country: "SUI", lastname: "Brauchli", firstname: "Christian" }
+        ]
+    },
+    {
+        id: 36, type: "DNF", time: "17:14", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"m", country: "SUI", lastname: "Logean", firstname: "Antoine" },
+            { zone: "B", gender:"f", country: "SUI", lastname: "Kyburz", firstname: "Dalida" }
+        ]
+    },
+    {
+        id: 37, type: "DNF", time: "17:22", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"m", country: "SUI", lastname: "Witschi", firstname: "Alex" },
+            { zone: "B", gender:"m", country: "SUI", lastname: "Bächtold", firstname: "Thomas" }
+        ]
+    },
+    {
+        id: 38, type: "DNF", time: "17:30", zone: "", gender:"", lastname: "", firstname: "", _children: [
+            { zone: "A", gender:"f", country: "FRA", lastname: "Vidberg", firstname: "Florie" },
+            { zone: "B", gender:"m", country: "BEL", lastname: "Hubert", firstname: "Lancelot" }
         ]
     },
 ];
@@ -36,10 +248,11 @@ myOffcanvas.addEventListener('shown.bs.offcanvas', function () {
     var table = new Tabulator("#startlist-table", {
         data: startlist, //assign data to table
         // autoColumns: true, //create columns from data field names
+        layout:"fitColumns",
         groupBy:"type",
         dataTree:true,
         columns:[
-            {title:"#", field:"id", responsive:10},
+            // {title:"#", field:"id", responsive:10},
             {title:"Time", field:"time", responsive:0},
             {title:"zone", field:"zone", responsive:0},
             {title:"gender", field:"gender", responsive:0},
