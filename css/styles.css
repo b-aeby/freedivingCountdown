@@ -28,6 +28,21 @@
   color:#e01515;
 }
 
+#offcanvasRight {
+  width : 60%;
+}
+
+
+#startlist-table .tabulator-row .tabulator-cell .tabulator-data-tree-control {
+  border: 2px solid #e01515 !important;
+  background-color: #e01515;
+}
+
+#startlist-table .tabulator-row .tabulator-cell .tabulator-data-tree-branch {
+  border-left: 2px solid #e01515;
+  border-bottom: 2px solid #e01515;
+}
+
 @media (min-width: 100px) { 
   .countdown, .clock{
     font-size: 40px;
