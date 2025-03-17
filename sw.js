@@ -16,8 +16,9 @@ var filesToCache = [
   //--------------------------------------------------------------------------------------------------------------------
 
   // app files ---------------------------------------------------------------------------------------------------------
-  // 'page2.html',
   'css/styles.css',
+  'js/settings.js',
+  'js/freedivingCountdown.js',
   // 'img/header.jpg',
   'img/offline-img.png',
   // 'https://fonts.googleapis.com/css?family=Raleway',
@@ -25,13 +26,20 @@ var filesToCache = [
   // -------------------------------------------------------------------------------------------------------------------
 
   // vendor files ------------------------------------------------------------------------------------------------------
+  // - luxon
+  'vendor/luxon/luxon.min.js',
   // - easytimer
   'vendor/easytimer/easytimer.min.js',
   // - jquery
   'vendor/jquery/jquery-3.7.1.min.js',
+  // - tabulator
+  'vendor/tabulator/css/tabulator_bootstrap5.min.css',
+  'vendor/tabulator/css/tabulator_bootstrap5.min.css.map',
+  'vendor/tabulator/js/tabulator.min.js',
+  'vendor/tabulator/js/tabulator.min.js.map',  
   // BOOTSTRAP
-  'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css',
-  'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js',
+  'vendor/css/bootstrap.min.css',
+  'vendor/js/bootstrap.bundle.min.js',
   // -------------------------------------------------------------------------------------------------------------------
 
   // Audio files

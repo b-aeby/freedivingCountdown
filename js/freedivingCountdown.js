@@ -1,5 +1,5 @@
 const delay = 0;
-
+var muted = false;
 var timer_display = '--:--:--';
 
 const audio_m120 = new Audio(src = "audio/otm120.mp3", type = "audio/mp3")
@@ -57,46 +57,44 @@ audio_28.preload = 'auto';
 audio_29.preload = 'auto';
 audio_30.preload = 'auto';
 
-var muted = false;
+
 
 const toggle_mute = () => {
-    
-    console.log('Toggle mute!');
-        if (muted == false) {
-            muted = true;
-            $("#btn-mute .fa-volume-off").addClass('d-none')
-            $("#btn-mute .fa-volume-xmark").removeClass('d-none')
-        } else {
-            muted = false;
-            $("#btn-mute .fa-volume-off").removeClass('d-none')
-            $("#btn-mute .fa-volume-xmark").addClass('d-none')
-        }
+    if (muted == false) {
+        muted = true;
+        $("#btn-mute .fa-volume-off").addClass('d-none');
+        $("#btn-mute .fa-volume-xmark").removeClass('d-none');
+    } else {
+        muted = false;
+        $("#btn-mute .fa-volume-off").removeClass('d-none');
+        $("#btn-mute .fa-volume-xmark").addClass('d-none');
+    }
+    console.log(`Mute : ${muted}`);
 }
 
 
 addEventListener("keypress", (event) => {
-    console.log(event.code);
     if (event.code == "KeyM") {
-        toggle_mute();  
+        toggle_mute();
     }
 });
 
-$("#btn-mute").on("click", function(event){
+$("#btn-mute").on("click", function (event) {
     event.preventDefault();
-    toggle_mute( );
+    toggle_mute();
 });
 
 const play_audio = (sound) => {
-    if(!muted){
-        setTimeout(function(){
+    if (!muted) {
+        setTimeout(function () {
             sound.play();
         }, delay);
     }
 }
 
 class aidaCountdown {
-    constructor(year, month, day, hour, minute, second) {
-        this.startTime = new Date(year, month, day, hour, minute, second);
+    constructor(startTime) {
+        this.startTime = startTime;
         console.log(this.startTime.toString());
         this.timer_countdown = new easytimer.Timer();
         this.timer_countdown.addEventListener('secondsUpdated', this.countDownSecond);
@@ -108,8 +106,8 @@ class aidaCountdown {
     countDownSecond = (event) => {
         console.log('countDownSecond!', this);
         const timeleft = this.timer_countdown.getTotalTimeValues().seconds;
-        
-        if (timeleft < 6*60) {
+
+        if (timeleft < 6 * 60) {
             timer_display = this.timer_countdown.getTimeValues().toString();
         }
 
@@ -197,23 +195,25 @@ class aidaCountdown {
     }
 
     start() {
-        const now = new Date();
-        var deltaT = this.startTime - now;
+        const now = luxon.DateTime.now();
+        var deltaT = this.startTime.diff(now, 'seconds');
+        var deltaT_seconds = deltaT.values.seconds.toFixed(0);
+        var deltaT_millisecs = (1000 * deltaT.values.seconds % 1).toFixed(0);
+        console.log(deltaT_seconds);
         console.log(this.startTime.toString());
         console.log(now.toString());
-        console.log(deltaT.toString());
-        var diff_as_date = new Date(deltaT);
+        console.log(deltaT);
         setTimeout(() => {
             this.timer_countdown.start({
                 countdown: true,
-                startValues: {
-                    hours: diff_as_date.getHours(),
-                    minutes: diff_as_date.getMinutes(),
-                    seconds: diff_as_date.getSeconds()
-                }
+                startValues: { seconds: deltaT_seconds }
             });
-        }, diff_as_date.getMilliseconds())
-        
+        }, deltaT_millisecs)
+    }
+
+    cancel() {
+        this.timer_countdown.stop();
+        this.timer_countUp.stop();
     }
 }
 
@@ -251,23 +251,23 @@ function display_clock() {
 
 // Sync clock display on full second
 var ms_offset = new Date().getMilliseconds();
-setTimeout(function(){
+setTimeout(function () {
     setInterval(display_clock, 1000);
 }, ms_offset + 10) // x ms added to avoid discrepancies between clock and timers
 
 
 
 //TODO:
-// Remplacer cdn par fichiers en cache?
+// OK - Remplacer cdn par fichiers en cache?
 // Fonction pour programmer une série de starts 
 //  - heure premier départ
 //  - intervalle en minutes
 //  - nombre de répétitions
-// UI -> panneau latéral pour les paramètres + animation
-// Fonction pour "muter" après le dernier départ
-//  - Clic sur un bouton
-//  - Clavier bluetooth? à tester comme télécommande + touche de fonction?
+// OK - UI -> panneau latéral pour les paramètres + animation
+// OK - Fonction pour "muter" après le dernier départ
+// OK -  - Clic sur un bouton
+// OK - - Clavier bluetooth? à tester comme télécommande + touche de fonction?
 //  - récativer à chaque nouveau compte à rebours
 // Fonction pour annuler tous les départs en lot
 //  - reset
-// Barre de progression avec nombre de départs restants
+// ? Barre de progression avec nombre de départs restants

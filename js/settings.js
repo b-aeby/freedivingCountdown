@@ -1,3 +1,8 @@
+var table;
+var settings_mode = "startlist";
+var manual_settings;
+var countdowns = [];
+
 //define data array
 var startlist = [
     {
@@ -243,9 +248,10 @@ var startlist = [
 ];
 
 var myOffcanvas = document.getElementById('offcanvasRight')
+
 myOffcanvas.addEventListener('shown.bs.offcanvas', function () {
     // do something...
-    var table = new Tabulator("#startlist-table", {
+    table = new Tabulator("#startlist-table", {
         data: startlist, //assign data to table
         // autoColumns: true, //create columns from data field names
         layout:"fitColumns",
@@ -264,3 +270,64 @@ myOffcanvas.addEventListener('shown.bs.offcanvas', function () {
     });
 })
 //initialize table
+
+$("#switchMode").on("change", function(){
+    if($(this).is(':checked')){
+        settings_mode = "startlist";
+        // $("#startlist-table").removeClass("d-none");
+        $("#manualSettings").addClass("d-none");
+    } else {
+        settings_mode = "manual";
+        // $("#startlist-table").addClass("d-none");
+        $("#manualSettings").removeClass("d-none");
+    }
+    console.log(`Settings mode : ${settings_mode}`);
+})
+
+
+const programManualStarts = (settingsForm) => {
+    console.log(settingsForm.startTime.value, settingsForm.interval.value, settingsForm.repetitions.value);
+    
+    let startTimeH = settingsForm.startTime.value.split(":")[0];
+    let startTimeM = settingsForm.startTime.value.split(":")[1];
+    let startTime = luxon.DateTime.fromObject({hours: startTimeH, minutes: startTimeM});
+    let interval = settingsForm.interval.value;
+    let rep = settingsForm.repetitions.value;
+    manual_settings = [];
+    for (let i = 0; i < rep; i++) { 
+        let thisStartTime = startTime.plus({minutes: i*interval})
+        let start = { id: i+1, time: thisStartTime.toLocaleString(luxon.DateTime.TIME_24_SIMPLE)};
+        manual_settings.push(start);
+    }
+    console.log(manual_settings);
+    table.setData(manual_settings);
+}
+
+
+const setupCountdowns = () => {
+    var actualSettings;
+    if (settings_mode === "startlist") {
+        actualSettings = startlist;
+    } else {
+        actualSettings = manual_settings;
+    }
+    actualSettings.forEach((start) => {
+        console.log(start);
+        let startTime = luxon.DateTime.fromObject({hours: start.time.split(":")[0], minutes: start.time.split(":")[1]});
+        console.log(startTime.toObject());
+        let newCD = new aidaCountdown(startTime);
+        countdowns.push(newCD);
+        console.log(countdowns);
+    })
+    countdowns.forEach((cd) => {
+        cd.start();
+    })
+}
+
+
+const resetCountdowns = () => {
+    countdowns.forEach((cd) => {
+        cd.cancel();
+    })
+    countdowns = [];
+}
