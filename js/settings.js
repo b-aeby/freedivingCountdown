@@ -281,10 +281,16 @@ $("#switchMode").on("change", function () {
         settings_mode = "startlist";
         // $("#startlist-table").removeClass("d-none");
         $("#manualSettings").addClass("d-none");
+        table.setData(startlist);
+        resetCountdowns();
+        setupCountdowns();
     } else {
         settings_mode = "manual";
         // $("#startlist-table").addClass("d-none");
         $("#manualSettings").removeClass("d-none");
+        table.setData(manual_settings);
+        resetCountdowns();
+        setupCountdowns();
     }
     console.log(`Settings mode : ${settings_mode}`);
 })

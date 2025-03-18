@@ -104,7 +104,7 @@ class aidaCountdown {
     }
 
     countDownSecond = (event) => {
-        console.log('countDownSecond!', this);
+        // console.log('countDownSecond!', this);
         const timeleft = this.timer_countdown.getTotalTimeValues().seconds;
 
         if (timeleft < 6 * 60) {
@@ -136,7 +136,8 @@ class aidaCountdown {
         } else if (timeleft === 1) {
             play_audio(audio_1);
         } else {
-            console.log(timeleft);
+            // console.log(timeleft);
+            
         }
     }
 
@@ -147,7 +148,7 @@ class aidaCountdown {
     }
 
     countUpSecond = (event) => {
-        console.log('countUpSecond!', this);
+        // console.log('countUpSecond!', this);
         var timeplus = this.timer_countUp.getTotalTimeValues().seconds;
         timer_display = this.timer_countUp.getTimeValues().toString()
         if (timeplus === 31) {
@@ -190,7 +191,7 @@ class aidaCountdown {
         } else if (timeplus === 1) {
             play_audio(audio_plus_1);
         } else {
-            console.log(timeplus);
+            // console.log(timeplus);
         }
     }
 
@@ -203,12 +204,14 @@ class aidaCountdown {
         console.log(this.startTime.toString());
         console.log(now.toString());
         console.log(deltaT);
-        setTimeout(() => {
-            this.timer_countdown.start({
-                countdown: true,
-                startValues: { seconds: deltaT_seconds }
-            });
-        }, deltaT_millisecs)
+        if (deltaT_seconds > 10) {
+            setTimeout(() => {
+                this.timer_countdown.start({
+                    countdown: true,
+                    startValues: { seconds: deltaT_seconds }
+                });
+            }, deltaT_millisecs)
+        }
     }
 
     cancel() {
