@@ -327,7 +327,6 @@ const setupCountdowns = () => {
     }
     actualSettings.forEach((start) => {
         console.log(start);
-        console.log(startTime.toObject());
         let newCD = new aidaCountdown(start);
         countdowns.push(newCD);
         console.log(countdowns);
