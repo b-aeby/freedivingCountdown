@@ -30,13 +30,13 @@ var filesToCache = [
   // - jquery
   'vendor/jquery/jquery-3.7.1.min.js',
   // - tabulator
-  'vendor/tabulator/css/tabulator_bootstrap5.min.css',
-  'vendor/tabulator/css/tabulator_bootstrap5.min.css.map',
-  'vendor/tabulator/js/tabulator.min.js',
-  'vendor/tabulator/js/tabulator.min.js.map',
-  // BOOTSTRAP
-  'vendor/css/bootstrap.min.css',
-  'vendor/js/bootstrap.bundle.min.js',
+  // 'vendor/tabulator/css/tabulator_bootstrap5.min.css',
+  // 'vendor/tabulator/css/tabulator_bootstrap5.min.css.map',
+  // 'vendor/tabulator/js/tabulator.min.js',
+  // 'vendor/tabulator/js/tabulator.min.js.map',
+  // // BOOTSTRAP
+  // 'vendor/css/bootstrap.min.css',
+  // 'vendor/js/bootstrap.bundle.min.js',
   // -------------------------------------------------------------------------------------------------------------------
 
   // // Audio files
