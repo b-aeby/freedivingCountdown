@@ -1,4 +1,4 @@
-exports.convertIOCCountryCode = function (IOCCountryCode) {
+const convertIOCCountryCode = function (IOCCountryCode) {
 
   switch (IOCCountryCode.toUpperCase()) {
     case 'AFG' : return { countryName: 'Afghanistan', FIFA: 'AFG', ISO3: 'AFG', ISO2: 'AF'}; break;
