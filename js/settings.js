@@ -327,7 +327,6 @@ const setupCountdowns = () => {
     }
     actualSettings.forEach((start) => {
         console.log(start);
-        let startTime = luxon.DateTime.fromObject({ hours: start.time.split(":")[0], minutes: start.time.split(":")[1] });
         console.log(startTime.toObject());
         let newCD = new aidaCountdown(start);
         countdowns.push(newCD);
