@@ -46,6 +46,32 @@
   border-bottom: 2px solid #e01515;
 }
 
+.fa-venus{
+  color: pink;
+}
+
+.fa-mars {
+  color: blue;
+}
+
+.card-header {
+  font-size: 25px;;
+}
+
+#starterA_firstname,
+#starterB_firstname,
+#starterC_firstname,
+#starterD_firstname{
+  font-size: 30px;
+}
+
+#starterA_lastname,
+#starterB_lastname,
+#starterC_lastname,
+#starterD_lastname {
+  font-size: 30px;
+}
+
 @media (min-width: 100px) { 
   .countdown, .clock{
     font-size: 40px;

@@ -264,6 +264,23 @@ setTimeout(function () {
 }, ms_offset + 10) // x ms added to avoid discrepancies between clock and timers
 
 const display_starters = function (start) {
+    $(`#starterA_firstname`).html(''); 
+    $(`#starterA_lastname`).html(''); 
+    $(`#starterA_gender`).html('');
+    $(`#starterA_country`).html('');
+    $(`#starterB_firstname`).html(''); 
+    $(`#starterB_lastname`).html(''); 
+    $(`#starterB_gender`).html('');
+    $(`#starterB_country`).html('');
+    $(`#starterC_firstname`).html(''); 
+    $(`#starterC_lastname`).html(''); 
+    $(`#starterC_gender`).html('');
+    $(`#starterC_country`).html('');
+    $(`#starterD_firstname`).html(''); 
+    $(`#starterD_lastname`).html(''); 
+    $(`#starterD_gender`).html('');
+    $(`#starterD_country`).html('');
+      
     start._children.forEach(function(starter){ 
         $(`#starter${starter.zone}_firstname`).html(starter.firstname); 
         $(`#starter${starter.zone}_lastname`).html(starter.lastname); 
@@ -276,10 +293,17 @@ const display_starters = function (start) {
         };
 
         let country = convertIOCCountryCode(starter.country);
-        console.log(country.ISO2);
+        console.log(country.ISO2.toLowerCase());
+        console.log(`<img src="img/flags/40x30/${country.ISO2.toLowerCase()}.png" alt="">`);
         
-        $(`#starter${starter.zone}_country`).html(starter.country); 
+        $(`#starter${starter.zone}_country`).html(`<img src="img/flags/h40/${country.ISO2.toLowerCase()}.png" alt="" height="25">`); 
     })
+    if (start.type === "STA") {
+        $(".staOnly").removeClass("d-none");
+    } else {
+        $(".staOnly").addClass("d-none");
+    }
+    
     displayedStartId = start.id;
 };
 
