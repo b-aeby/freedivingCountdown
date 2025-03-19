@@ -307,18 +307,3 @@ const display_starters = function (start) {
     displayedStartId = start.id;
 };
 
-
-//TODO:
-// OK - Remplacer cdn par fichiers en cache?
-// Fonction pour programmer une série de starts 
-//  - heure premier départ
-//  - intervalle en minutes
-//  - nombre de répétitions
-// OK - UI -> panneau latéral pour les paramètres + animation
-// OK - Fonction pour "muter" après le dernier départ
-// OK -  - Clic sur un bouton
-// OK - - Clavier bluetooth? à tester comme télécommande + touche de fonction?
-//  - récativer à chaque nouveau compte à rebours
-// Fonction pour annuler tous les départs en lot
-//  - reset
-// ? Barre de progression avec nombre de départs restants
