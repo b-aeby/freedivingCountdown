@@ -261,7 +261,7 @@ setTimeout(function () {
 }, ms_offset + 10) // x ms added to avoid discrepancies between clock and timers
 
 const display_starters = function (start) {
-    start._children.forEach((starter) => ( ${`#starter${starter.zone}_firstname`}.html(starter.firstname) ))
+    start._children.forEach((starter) => ( $(`#starter${starter.zone}_firstname`).html(starter.firstname) ))
                             };
 
 
