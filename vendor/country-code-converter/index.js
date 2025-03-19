@@ -205,7 +205,7 @@ const convertIOCCountryCode = function (IOCCountryCode) {
 
 }
 
-exports.convertFIFACountryCode = function (FIFACountryCode) {
+const convertFIFACountryCode = function (FIFACountryCode) {
 
   switch (FIFACountryCode.toUpperCase()) {
     case 'AFG' : return { countryName: 'Afghanistan', IOC: 'AFG', ISO3: 'AFG', ISO2: 'AF'}; break;
@@ -412,7 +412,7 @@ exports.convertFIFACountryCode = function (FIFACountryCode) {
 
 }
 
-exports.convertISO3CountryCode = function (ISO3CountryCode) {
+const convertISO3CountryCode = function (ISO3CountryCode) {
 
   switch (ISO3CountryCode.toUpperCase()) { 
     case 'AFG' : return { countryCode: 'Afghanistan', IOC: 'AFG', FIFA: 'AFG', ISO2: 'AF'}; break;
@@ -619,7 +619,7 @@ exports.convertISO3CountryCode = function (ISO3CountryCode) {
 
 }
 
-exports.convertISO2CountryCode = function convertISO2CountryCode (ISO2CountryCode) {
+const convertISO2CountryCode = function convertISO2CountryCode (ISO2CountryCode) {
 
   switch (ISO2CountryCode.toUpperCase()) { 
     case 'AF' : return { countryName: 'Afghanistan', IOC: 'AFG', FIFA: 'AFG', ISO3: 'AFG'}; break;
@@ -827,7 +827,7 @@ exports.convertISO2CountryCode = function convertISO2CountryCode (ISO2CountryCod
 
 }
 
-exports.convertCountryName = function (countryName) {
+const convertCountryName = function (countryName) {
 
   switch (countryName.toLowerCase()) {
     case 'afghanistan' : return { IOC: 'AFG', FIFA: 'AFG', ISO3: 'AFG', ISO2: 'AF'}; break;
