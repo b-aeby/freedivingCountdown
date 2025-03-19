@@ -15,58 +15,58 @@ var filesToCache = [
   'favicon.png',
   //--------------------------------------------------------------------------------------------------------------------
 
-  // app files ---------------------------------------------------------------------------------------------------------
-  'css/styles.css',
-  'js/settings.js',
-  'js/freedivingCountdown.js',
-  'img/offline-img.png',
-  // -------------------------------------------------------------------------------------------------------------------
+  // // app files ---------------------------------------------------------------------------------------------------------
+  // 'css/styles.css',
+  // 'js/settings.js',
+  // 'js/freedivingCountdown.js',
+  // 'img/offline-img.png',
+  // // -------------------------------------------------------------------------------------------------------------------
 
-  // vendor files ------------------------------------------------------------------------------------------------------
-  // - luxon
-  'vendor/luxon/luxon.min.js',
-  // - easytimer
-  'vendor/easytimer/easytimer.min.js',
-  // - jquery
-  'vendor/jquery/jquery-3.7.1.min.js',
-  // - tabulator
-  'vendor/tabulator/css/tabulator_bootstrap5.min.css',
-  'vendor/tabulator/css/tabulator_bootstrap5.min.css.map',
-  'vendor/tabulator/js/tabulator.min.js',
-  'vendor/tabulator/js/tabulator.min.js.map',
-  // BOOTSTRAP
-  'vendor/css/bootstrap.min.css',
-  'vendor/js/bootstrap.bundle.min.js',
-  // -------------------------------------------------------------------------------------------------------------------
+  // // vendor files ------------------------------------------------------------------------------------------------------
+  // // - luxon
+  // 'vendor/luxon/luxon.min.js',
+  // // - easytimer
+  // 'vendor/easytimer/easytimer.min.js',
+  // // - jquery
+  // 'vendor/jquery/jquery-3.7.1.min.js',
+  // // - tabulator
+  // 'vendor/tabulator/css/tabulator_bootstrap5.min.css',
+  // 'vendor/tabulator/css/tabulator_bootstrap5.min.css.map',
+  // 'vendor/tabulator/js/tabulator.min.js',
+  // 'vendor/tabulator/js/tabulator.min.js.map',
+  // // BOOTSTRAP
+  // 'vendor/css/bootstrap.min.css',
+  // 'vendor/js/bootstrap.bundle.min.js',
+  // // -------------------------------------------------------------------------------------------------------------------
 
-  // Audio files
-  'audio/otm120.mp3',
-  'audio/otm90.mp3',
-  'audio/otm60.mp3',
-  'audio/otm30.mp3',
-  'audio/ot.mp3',
-  'audio/plus_1.mp3',
-  'audio/1.mp3',
-  'audio/2.mp3',
-  'audio/3.mp3',
-  'audio/4.mp3',
-  'audio/5.mp3',
-  'audio/6.mp3',
-  'audio/7.mp3',
-  'audio/8.mp3',
-  'audio/9.mp3',
-  'audio/10.mp3',
-  'audio/20.mp3',
-  'audio/25.mp3',
-  'audio/26.mp3',
-  'audio/27.mp3',
-  'audio/28.mp3',
-  'audio/29.mp3',
-  'audio/30.mp3',
-  'audio/start_cancelled.mp3',
+  // // Audio files
+  // 'audio/otm120.mp3',
+  // 'audio/otm90.mp3',
+  // 'audio/otm60.mp3',
+  // 'audio/otm30.mp3',
+  // 'audio/ot.mp3',
+  // 'audio/plus_1.mp3',
+  // 'audio/1.mp3',
+  // 'audio/2.mp3',
+  // 'audio/3.mp3',
+  // 'audio/4.mp3',
+  // 'audio/5.mp3',
+  // 'audio/6.mp3',
+  // 'audio/7.mp3',
+  // 'audio/8.mp3',
+  // 'audio/9.mp3',
+  // 'audio/10.mp3',
+  // 'audio/20.mp3',
+  // 'audio/25.mp3',
+  // 'audio/26.mp3',
+  // 'audio/27.mp3',
+  // 'audio/28.mp3',
+  // 'audio/29.mp3',
+  // 'audio/30.mp3',
+  // 'audio/start_cancelled.mp3',
 
-  // fonts:
-  'fonts/DigitalNumbers-Regular.ttf',
+  // // fonts:
+  // 'fonts/DigitalNumbers-Regular.ttf',
 
   // flags:
   // 'img/flags/h40/mq.png',
