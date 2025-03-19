@@ -264,7 +264,14 @@ const display_starters = function (start) {
     start._children.forEach(function(starter){ 
         $(`#starter${starter.zone}_firstname`).html(starter.firstname); 
         $(`#starter${starter.zone}_lastname`).html(starter.lastname); 
-        $(`#starter${starter.zone}_gender`).html(starter.gender); 
+        if (starter.gender == "f" ){
+            $(`#starter${starter.zone}_gender`).html(<i class="fa-solid fa-venus"></i>);
+        } elif (starter.gender == "m" ) {
+            $(`#starter${starter.zone}_gender`).html(<i class="fa-solid fa-mars"></i>);
+        } else {
+            $(`#starter${starter.zone}_gender`).html("");
+        }
+         
         $(`#starter${starter.zone}_country`).html(starter.country); 
     })
                             };
