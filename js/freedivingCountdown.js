@@ -1,6 +1,7 @@
 const delay = 0;
 var muted = false;
 var timer_display = '--:--:--';
+var displayedStartId;
 
 const audio_m120 = new Audio(src = "audio/otm120.mp3", type = "audio/mp3")
 const audio_m90 = new Audio(src = "audio/otm90.mp3", type = "audio/mp3")
@@ -110,7 +111,9 @@ class aidaCountdown {
             if(muted){
                 toggle_mute();
             }
-            
+            if (displayedStartId!==this.startDetails.id){
+                display_starters(this.startDetails);
+            }            
         }
 
         if (timeleft === 120) {
@@ -277,7 +280,8 @@ const display_starters = function (start) {
         
         $(`#starter${starter.zone}_country`).html(starter.country); 
     })
-                            };
+    displayedStartId = start.id;
+};
 
 
 //TODO:
