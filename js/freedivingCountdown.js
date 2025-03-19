@@ -272,8 +272,8 @@ const display_starters = function (start) {
             $(`#starter${starter.zone}_gender`).html('');
         };
 
-        let iso2_country = convertIOCCountryCode(starter.country);
-        console.log(iso2_country);
+        let country = convertIOCCountryCode(starter.country);
+        console.log(country.ISO2);
         
         $(`#starter${starter.zone}_country`).html(starter.country); 
     })
