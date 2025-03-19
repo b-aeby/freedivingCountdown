@@ -95,7 +95,7 @@ const play_audio = (sound) => {
 class aidaCountdown {
     constructor(start) {
         this.startDetails = start;
-        this.startTime = start.startTime;
+        this.startTime = luxon.DateTime.fromObject({ hours: start.startTime.split(":")[0], minutes: start.startTime.split(":")[1] });
         console.log(this.startTime.toString());
         this.timer_countdown = new easytimer.Timer();
         this.timer_countdown.addEventListener('secondsUpdated', this.countDownSecond);
