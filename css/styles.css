@@ -1,6 +1,6 @@
 @font-face {
   font-family: digitalNumbers;
-  src: url('../fonts/DigitalNumbers-Regular.ttf');
+  src: url('../fonts/DigitalNumbers-Regular.ttf') format('truetype');;
   font: 1em sans-serif;
 }
 
