@@ -35,8 +35,8 @@ var filesToCache = [
   'vendor/tabulator/js/tabulator.min.js',
   // 'vendor/tabulator/js/tabulator.min.js.map',
   // BOOTSTRAP
-  'vendor/css/bootstrap.min.css',
-  'vendor/js/bootstrap.bundle.min.js',
+  'vendor/bootstrap/css/bootstrap.min.css',
+  'vendor/bootstrap/js/bootstrap.bundle.min.js',
   // -------------------------------------------------------------------------------------------------------------------
 
   // // Audio files
