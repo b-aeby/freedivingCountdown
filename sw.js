@@ -19,10 +19,7 @@ var filesToCache = [
   'css/styles.css',
   'js/settings.js',
   'js/freedivingCountdown.js',
-  // 'img/header.jpg',
   'img/offline-img.png',
-  // 'https://fonts.googleapis.com/css?family=Raleway',
-  'js/freedivingCountdown.js',
   // -------------------------------------------------------------------------------------------------------------------
 
   // vendor files ------------------------------------------------------------------------------------------------------
