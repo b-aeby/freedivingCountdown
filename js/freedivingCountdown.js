@@ -95,8 +95,8 @@ const play_audio = (sound) => {
 class aidaCountdown {
     constructor(start) {
         this.startDetails = start;
-        this.startTime = luxon.DateTime.fromObject({ hours: start.startTime.split(":")[0], minutes: start.startTime.split(":")[1] });
-        console.log(this.startTime.toString());
+        this.startTime = luxon.DateTime.fromObject({ hours: start.time.split(":")[0], minutes: start.time.split(":")[1] });
+        console.log(this.time.toString());
         this.timer_countdown = new easytimer.Timer();
         this.timer_countdown.addEventListener('secondsUpdated', this.countDownSecond);
         this.timer_countdown.addEventListener('targetAchieved', this.countDownAchieved);
@@ -110,6 +110,10 @@ class aidaCountdown {
 
         if (timeleft < 6 * 60) {
             timer_display = this.timer_countdown.getTimeValues().toString();
+            if(muted){
+                toggle_mute();
+            }
+            
         }
 
         if (timeleft === 120) {
