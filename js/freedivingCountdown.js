@@ -270,8 +270,11 @@ const display_starters = function (start) {
             $(`#starter${starter.zone}_gender`).html('<i class="fa-solid fa-mars"></i>');
         } else {
             $(`#starter${starter.zone}_gender`).html('');
-        }
-         
+        };
+
+        let iso2_country = convertIOCCountryCode(starter.country);
+        console.log(iso2_country);
+        
         $(`#starter${starter.zone}_country`).html(starter.country); 
     })
                             };
