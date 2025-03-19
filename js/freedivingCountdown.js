@@ -29,9 +29,6 @@ const audio_29 = new Audio(src = "audio/29.mp3", type = "audio/mp3")
 const audio_30 = new Audio(src = "audio/30.mp3", type = "audio/mp3")
 
 audio_m120.preload = 'auto';
-audio_m120.play();
-audio_m120.pause();
-
 audio_m90.preload = 'auto';
 audio_m60.preload = 'auto';
 audio_m30.preload = 'auto';
