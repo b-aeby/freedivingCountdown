@@ -86,7 +86,7 @@ var startlist = [
     {
         id: 12, type: "DYN/DYNB", time: "13:44", zone: "", gender: "", lastname: "", firstname: "", _children: [
             { zone: "A", gender: "f", country: "SUI", lastname: "Cid", firstname: "Isabelle" },
-            { zone: "B", gender: "f", country: "SUI", lastname: "Robert", firstname: "Lucy" }
+            { zone: "B", gender: "f", country: "SUI", lastname: "Robert", firstname: "Lucie" }
         ]
     },
     {
@@ -200,7 +200,7 @@ var startlist = [
     {
         id: 31, type: "DNF", time: "16:34", zone: "", gender: "", lastname: "", firstname: "", _children: [
             { zone: "A", gender: "f", country: "SUI", lastname: "Cid", firstname: "Isabelle" },
-            { zone: "B", gender: "f", country: "SUI", lastname: "Robert", firstname: "Lucy" }
+            { zone: "B", gender: "f", country: "SUI", lastname: "Robert", firstname: "Lucie" }
         ]
     },
     {
