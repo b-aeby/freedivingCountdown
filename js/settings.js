@@ -54,7 +54,7 @@ var startlist = [
     {
         id: 7, type: "STA", time: "11:57", zone: "", gender: "", lastname: "", firstname: "", _children: [
             { zone: "A", gender: "m", country: "BEL", lastname: "Hubert", firstname: "Lancelot" },
-            { zone: "B", gender: "m", country: "SUI", lastname: "Piguet", firstname: "Piguet" },
+            { zone: "B", gender: "m", country: "SUI", lastname: "Piguet", firstname: "Hugo" },
             { zone: "C", gender: "m", country: "SUI", lastname: "Gunzenhauser", firstname: "Ronny" },
             { zone: "D", gender: "", country: "", lastname: "", firstname: "" }
         ]
@@ -128,7 +128,7 @@ var startlist = [
     {
         id: 19, type: "DYN/DYNB", time: "14:40", zone: "", gender: "", lastname: "", firstname: "", _children: [
             { zone: "A", gender: "m", country: "SUI", lastname: "Perrenoud", firstname: "Dylan" },
-            { zone: "B", gender: "f", country: "BOL", lastname: "Duenas", firstname: "Erika" }
+            { zone: "B", gender: "f", country: "BOL", lastname: "Duenas Loayza", firstname: "Erika Angela" }
         ]
     },
     {
@@ -181,8 +181,8 @@ var startlist = [
     },
     {
         id: 28, type: "DNF", time: "16:10", zone: "", gender: "", lastname: "", firstname: "", _children: [
-            { zone: "A", gender: "", country: "", lastname: "Starter1", firstname: "" },
-            { zone: "B", gender: "", country: "", lastname: "Starter2", firstname: "" }
+            { zone: "A", gender: "", country: "", lastname: "Starter 1", firstname: "" },
+            { zone: "B", gender: "", country: "", lastname: "Starter 2", firstname: "" }
         ]
     },
     {
