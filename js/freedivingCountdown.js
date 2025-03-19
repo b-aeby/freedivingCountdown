@@ -260,12 +260,12 @@ setTimeout(function () {
     setInterval(display_clock, 1000);
 }, ms_offset + 10) // x ms added to avoid discrepancies between clock and timers
 
-const display_starters = (start) => {
+const display_starters = (start) => (
     start._children.forEach(starter){
         ${`#starter${starter.zone}_firstname`}.html(starter.firstname)
     };
-    
-}
+    );
+
 
 //TODO:
 // OK - Remplacer cdn par fichiers en cache?
