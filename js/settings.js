@@ -40,23 +40,23 @@ var startlist = [
             { zone: "A", gender: "f", country: "SUI", lastname: "Kollep", firstname: "Lara" },
             { zone: "B", gender: "f", country: "SUI", lastname: "Autunno", firstname: "Elsa" },
             { zone: "C", gender: "f", country: "MAR", lastname: "Chellai", firstname: "Oulfa" },
-            { zone: "D", gender: "f", country: "SUI", lastname: "Melileo", firstname: "Andrea" }
+            { zone: "D", gender: "f", country: "FRA", lastname: "Martin", firstname: "Alice" }
         ]
     },
     {
         id: 6, type: "STA", time: "11:45", zone: "", gender: "", lastname: "", firstname: "", _children: [
-            { zone: "A", gender: "m", country: "ESP", lastname: "Llibre", firstname: "Oleguer" },
-            { zone: "B", gender: "m", country: "TUR", lastname: "Pelenk", firstname: "Okan" },
-            { zone: "C", gender: "m", country: "SUI", lastname: "Amiot", firstname: "Jonathan" },
-            { zone: "D", gender: "m", country: "SUI", lastname: "Fonjallaz", firstname: "David" }
+            { zone: "A", gender: "f", country: "SUI", lastname: "Melileo", firstname: "Andrea" },
+            { zone: "B", gender: "m", country: "ESP", lastname: "Llibre", firstname: "Oleguer" },
+            { zone: "C", gender: "m", country: "TUR", lastname: "Pelenk", firstname: "Okan" },
+            { zone: "D", gender: "m", country: "SUI", lastname: "Amiot", firstname: "Jonathan" }
         ]
     },
     {
         id: 7, type: "STA", time: "11:57", zone: "", gender: "", lastname: "", firstname: "", _children: [
-            { zone: "A", gender: "m", country: "BEL", lastname: "Hubert", firstname: "Lancelot" },
-            { zone: "B", gender: "m", country: "SUI", lastname: "Piguet", firstname: "Hugo" },
-            { zone: "C", gender: "m", country: "SUI", lastname: "Gunzenhauser", firstname: "Ronny" },
-            { zone: "D", gender: "", country: "", lastname: "", firstname: "" }
+            { zone: "A", gender: "m", country: "SUI", lastname: "Fonjallaz", firstname: "David" },
+            { zone: "B", gender: "m", country: "BEL", lastname: "Hubert", firstname: "Lancelot" },
+            { zone: "C", gender: "m", country: "SUI", lastname: "Piguet", firstname: "Hugo" },
+            { zone: "D", gender: "m", country: "SUI", lastname: "Gunzenhauser", firstname: "Ronny" }
         ]
     },
     {
