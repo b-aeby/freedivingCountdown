@@ -7,8 +7,8 @@ var countdowns = [];
 var startlist = [
     {
         id: 1, type: "STA", time: "10:45", zone: "", gender: "", lastname: "", firstname: "", _children: [
-            { zone: "A", gender: "", country: "", lastname: "Starter1", firstname: "" },
-            { zone: "B", gender: "", country: "", lastname: "Starter2", firstname: "" }
+            { zone: "A", gender: "", country: "", lastname: "Starter 1", firstname: "" },
+            { zone: "B", gender: "", country: "", lastname: "Starter 2", firstname: "" }
         ]
     },
     {
@@ -61,8 +61,8 @@ var startlist = [
     },
     {
         id: 8, type: "DYN/DYNB", time: "13:12", zone: "", gender: "", lastname: "", firstname: "", _children: [
-            { zone: "A", gender: "", country: "", lastname: "Starter1", firstname: "" },
-            { zone: "B", gender: "", country: "", lastname: "Starter2", firstname: "" }
+            { zone: "A", gender: "", country: "", lastname: "Starter 1", firstname: "" },
+            { zone: "B", gender: "", country: "", lastname: "Starter 2", firstname: "" }
         ]
     },
     {
@@ -128,7 +128,7 @@ var startlist = [
     {
         id: 19, type: "DYN/DYNB", time: "14:40", zone: "", gender: "", lastname: "", firstname: "", _children: [
             { zone: "A", gender: "m", country: "SUI", lastname: "Perrenoud", firstname: "Dylan" },
-            { zone: "B", gender: "f", country: "BOL", lastname: "Duenas Loayza", firstname: "Erika Angela" }
+            { zone: "B", gender: "f", country: "BOL", lastname: "Duenas", firstname: "Erika" }
         ]
     },
     {
