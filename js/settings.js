@@ -1,6 +1,5 @@
 var table;
 var settings_mode = "startlist";
-var actualSettings = "startlist";
 var manual_settings;
 var countdowns = [];
 
@@ -248,6 +247,8 @@ var startlist = [
     },
 ];
 
+
+
 var myOffcanvas = document.getElementById('offcanvasRight')
 
 myOffcanvas.addEventListener('shown.bs.offcanvas', function () {
@@ -320,6 +321,7 @@ const programManualStarts = (settingsForm) => {
 
 
 const setupCountdowns = () => {    
+    var actualSettings;
     if (settings_mode === "startlist") {
         actualSettings = startlist;
         $(".startersInfo").removeClass('d-none');

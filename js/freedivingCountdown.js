@@ -112,7 +112,9 @@ class aidaCountdown {
                 toggle_mute();
             }
             if (displayedStartId!==this.startDetails.id){
+                if (this.startDetails._children) {
                 display_starters(this.startDetails);
+                }
             }            
         }
 
@@ -160,7 +162,6 @@ class aidaCountdown {
             play_audio(audio_start_cancelled);
             this.timer_countUp.stop();
             timer_display = '--:--:--';
-            // timer.reset();
         } else if (timeplus === 30) {
             play_audio(audio_30);
         } else if (timeplus === 29) {
@@ -261,7 +262,7 @@ function display_clock() {
 var ms_offset = new Date().getMilliseconds();
 setTimeout(function () {
     setInterval(display_clock, 1000);
-}, ms_offset + 10) // x ms added to avoid discrepancies between clock and timers
+}, ms_offset - 50) // x ms added to avoid discrepancies between clock and timers
 
 const display_starters = function (start) {
     $(`#starterA_firstname`).html(''); 
@@ -294,7 +295,7 @@ const display_starters = function (start) {
 
         let country = convertIOCCountryCode(starter.country);
         console.log(country.ISO2.toLowerCase());
-        console.log(`<img src="img/flags/40x30/${country.ISO2.toLowerCase()}.png" alt="">`);
+        console.log(`<img src="img/flags/h40/${country.ISO2.toLowerCase()}.png" alt="">`);
         
         $(`#starter${starter.zone}_country`).html(`<img src="img/flags/h40/${country.ISO2.toLowerCase()}.png" alt="" height="25">`); 
     })
