@@ -5,7 +5,7 @@
 }
 
 .clock{
-  font-size: 180px;
+  font-size: 150px;
   font-family: digitalNumbers, sans-serif, monospace;
   color:#000000;
 }
@@ -124,7 +124,7 @@
 
 @media (min-width: 1400px) { 
   .countdown, .clock{
-    font-size: 180px;
+    font-size: 150px;
   }
 
   .officialTime, .nextStart{
