@@ -1,5 +1,6 @@
 var table;
 var settings_mode = "startlist";
+var actualSettings = "startlist";
 var manual_settings;
 var countdowns = [];
 
@@ -318,12 +319,13 @@ const programManualStarts = (settingsForm) => {
 }
 
 
-const setupCountdowns = () => {
-    var actualSettings;
+const setupCountdowns = () => {    
     if (settings_mode === "startlist") {
         actualSettings = startlist;
+        $(".startersInfo").removeClass('d-none');
     } else {
         actualSettings = manual_settings;
+        $(".startersInfo").addClass('d-none');
     }
     actualSettings.forEach((start) => {
         console.log(start);
