@@ -176,7 +176,7 @@ var startlist = [
     {
         id: 27, type: "DYN/DYNB", time: "15:44", zone: "", gender: "", lastname: "", firstname: "", _children: [
             { zone: "A", gender: "f", country: "SUI", lastname: "Vecera", firstname: "Marina" },
-            { zone: "B", gender: "", country: "", lastname: "", firstname: "" }
+            { zone: "B", gender: "f", country: "SUI", lastname: "Bläsi", firstname: "Andrea" }
         ]
     },
     {
