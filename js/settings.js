@@ -343,6 +343,15 @@ const resetCountdowns = () => {
     })
     countdowns = [];
     timer_display = '--:--:--';
+    const emptyStart = {
+        id: 0, type: "STA", time: "", zone: "", gender: "", lastname: "", firstname: "", _children: [
+            { zone: "A", gender: "", country: "", lastname: "", firstname: "" },
+            { zone: "B", gender: "", country: "", lastname: "", firstname: "" },
+            { zone: "C", gender: "", country: "", lastname: "", firstname: "" },
+            { zone: "D", gender: "", country: "", lastname: "", firstname: "" }
+        ]
+    };
+    display_starters(emptyStart);
 }
 
 
