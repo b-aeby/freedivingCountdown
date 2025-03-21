@@ -342,6 +342,7 @@ const resetCountdowns = () => {
         cd.cancel();
     })
     countdowns = [];
+    timer_display = '--:--:--';
 }
 
 
