@@ -29,7 +29,7 @@
     <header class="col-12 d-flex align-items-center justify-content-between p-3">
       <div></div>
       <div class="col text-center">
-        <h1 class="text-muted">25th AIDA Swiss Championship Indoor - 22.03.2025</h1>
+        <h1 class="text-muted d-none">25th AIDA Swiss Championship Indoor - 22.03.2025</h1>
       </div>
       <div>
         <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas"
@@ -157,13 +157,13 @@
       <div class="mb-3">
         <form action="">
           <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchMode" checked>
-            <label class="form-check-label" for="flexSwitchCheckDefault">Mode start-list</label>
+            <input class="form-check-input" type="checkbox" id="switchMode">
+            <label class="form-check-label" for="flexSwitchCheckDefault" id="switchMode_label">Mode manuel</label>
           </div>
         </form>
       </div>
 
-      <div id="manualSettings" class="d-none">
+      <div id="manualSettings">
         <hr>
         <form action="javascript:;" onsubmit="programManualStarts( this )">
           <div class="input-group mb-3">
@@ -173,12 +173,12 @@
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text w-25" id="interval-addon1">Intervalle (minutes)</span>
-            <input type="text" class="form-control" placeholder="8" aria-label="interval"
+            <input type="text" class="form-control" placeholder="8" value=8 aria-label="interval"
               aria-describedby="interval-addon1" name="interval">
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text w-25" id="rep-addon1">Répétitions</span>
-            <input type="text" class="form-control" placeholder="7" aria-label="repetitions"
+            <input type="text" class="form-control" placeholder="7" value=7 aria-label="repetitions"
               aria-describedby="rep-addon1" name="repetitions">
           </div>
           <hr>
@@ -189,7 +189,11 @@
       </div>
 
       <div id="startlist-table"></div>
-
+      <hr>
+      <div>
+        <h6>Shortcuts</h6>
+        <p><bold>M</bold> : Toggle multe (Only available after official top)</p>
+      </div>
     </div>
   </div>
 

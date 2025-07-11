@@ -3,6 +3,7 @@ var muted = false;
 var timer_display = '--:--:--';
 var displayedStartId;
 
+const audio_wn = new Audio(src = "audio/whiteNoise_3s.mp3", type = "audio/mp3")
 const audio_m120 = new Audio(src = "audio/otm120.mp3", type = "audio/mp3")
 const audio_m90 = new Audio(src = "audio/otm90.mp3", type = "audio/mp3")
 const audio_m60 = new Audio(src = "audio/otm60.mp3", type = "audio/mp3")
@@ -118,7 +119,11 @@ class aidaCountdown {
             }            
         }
 
-        if (timeleft === 120) {
+        if (timeleft === 130) {
+            // setTimeout(function(){audio_m120.play();}, delay);
+            console.log("White noise to wake up audio device");
+            play_audio(audio_wn);
+        } else if (timeleft === 120) {
             // setTimeout(function(){audio_m120.play();}, delay);
             console.log("2 minutes to official top");
             play_audio(audio_m120);
