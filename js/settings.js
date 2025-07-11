@@ -1,6 +1,6 @@
 var table;
-var settings_mode = "startlist";
-var manual_settings;
+var settings_mode = "manual"; //[manual, startList]
+var manual_settings = [];
 var countdowns = [];
 
 //define data array
@@ -256,7 +256,7 @@ myOffcanvas.addEventListener('shown.bs.offcanvas', function () {
     if (table === undefined) {
         console.log('table undefined');
         table = new Tabulator("#startlist-table", {
-            data: startlist, //assign data to table
+            data: manual_settings, //assign data to table
             // autoColumns: true, //create columns from data field names
             layout: "fitColumns",
             groupBy: "type",
@@ -281,6 +281,7 @@ myOffcanvas.addEventListener('shown.bs.offcanvas', function () {
 $("#switchMode").on("change", function () {
     if ($(this).is(':checked')) {
         settings_mode = "startlist";
+        $("#switchMode_label").html("Mode startlist");
         // $("#startlist-table").removeClass("d-none");
         $("#manualSettings").addClass("d-none");
         table.setData(startlist);
@@ -288,6 +289,7 @@ $("#switchMode").on("change", function () {
         setupCountdowns();
     } else {
         settings_mode = "manual";
+        $("#switchMode_label").html("Mode manuel");
         // $("#startlist-table").addClass("d-none");
         $("#manualSettings").removeClass("d-none");
         table.setData(manual_settings);
@@ -359,4 +361,6 @@ const resetCountdowns = () => {
 }
 
 
-setupCountdowns();
+// setupCountdowns();
+resetCountdowns();
+$("#switchMode").trigger("change");
