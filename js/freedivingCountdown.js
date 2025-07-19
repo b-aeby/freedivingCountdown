@@ -328,6 +328,8 @@ const requestWakeLock = async () => {
   }
 };
 
+requestWakeLock();
+
 const handleVisibilityChange = () => {
   if (wakeLock !== null && document.visibilityState === 'visible') {
     requestWakeLock();
