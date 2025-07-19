@@ -1,36 +1,34 @@
 @font-face {
   font-family: digitalNumbers;
-  src: url('../fonts/DigitalNumbers-Regular.ttf') format('truetype');;
+  src: url('../fonts/DigitalNumbers-Regular.ttf') format('truetype');
+  ;
   font: 1em sans-serif;
 }
 
-.clock{
+.clock {
   font-size: 150px;
   font-family: digitalNumbers, sans-serif, monospace;
-  color:#000000;
+  color: #000000;
 }
 
-.officialTime{
+.officialTime {
   font-size: 30px;
   font-family: digitalNumbers, sans-serif, monospace;
-  color:#000000;
+  color: #000000;
 }
 
-.countdown{
+.countdown {
   font-size: 100px;
   font-family: digitalNumbers, sans-serif, monospace;
-  color:#e01515;
+  color: #e01515;
 }
 
 .nextStart {
   font-size: 30px;
   font-family: digitalNumbers, sans-serif, monospace;
-  color:#e01515;
+  color: #e01515;
 }
 
-#offcanvasRight {
-  width : 60%;
-}
 
 #btn-mute {
   min-width: 40px !important;
@@ -46,7 +44,7 @@
   border-bottom: 2px solid #e01515;
 }
 
-.fa-venus{
+.fa-venus {
   color: pink;
 }
 
@@ -55,13 +53,14 @@
 }
 
 .card-header {
-  font-size: 25px;;
+  font-size: 25px;
+  ;
 }
 
 #starterA_firstname,
 #starterB_firstname,
 #starterC_firstname,
-#starterD_firstname{
+#starterD_firstname {
   font-size: 30px;
 }
 
@@ -72,62 +71,110 @@
   font-size: 30px;
 }
 
-@media (min-width: 100px) { 
-  .countdown, .clock{
+@media (min-width: 100px) {
+
+  .countdown,
+  .clock {
     font-size: 40px;
   }
 
-  .officialTime, .nextStart{
+  .officialTime,
+  .nextStart {
     font-size: 10px;
   }
- }
 
-@media (min-width: 576px) { 
-  .countdown, .clock{
+  #offcanvasRight {
+    width: 95%;
+  }
+
+}
+
+@media (min-width: 576px) {
+
+  .countdown,
+  .clock {
     font-size: 70px;
   }
 
-  .officialTime, .nextStart{
+  .officialTime,
+  .nextStart {
     font-size: 14px;
   }
- }
 
-@media (min-width: 768px) { 
-  .countdown, .clock{
+  #offcanvasRight {
+    width: 95%;
+  }
+
+}
+
+@media (min-width: 768px) {
+
+  .countdown,
+  .clock {
     font-size: 90px;
   }
 
-  .officialTime, .nextStart{
+  .officialTime,
+  .nextStart {
     font-size: 18px;
   }
- }
 
-@media (min-width: 992px) { 
-  .countdown, .clock{
+  #offcanvasRight {
+    width: 95%;
+  }
+
+}
+
+@media (min-width: 992px) {
+
+  .countdown,
+  .clock {
     font-size: 110px;
   }
 
-  .officialTime, .nextStart{
+  .officialTime,
+  .nextStart {
     font-size: 22px;
   }
- }
 
-@media (min-width: 1200px) { 
-  .countdown, .clock{
+  #offcanvasRight {
+    width: 95%;
+  }
+
+}
+
+@media (min-width: 1200px) {
+
+  .countdown,
+  .clock {
     font-size: 150px;
   }
 
-  .officialTime, .nextStart{
+  .officialTime,
+  .nextStart {
     font-size: 24px;
   }
- }
 
-@media (min-width: 1400px) { 
-  .countdown, .clock{
+  #offcanvasRight {
+    width: 60%;
+  }
+
+}
+
+@media (min-width: 1400px) {
+
+  .countdown,
+  .clock {
     font-size: 150px;
   }
 
-  .officialTime, .nextStart{
+  .officialTime,
+  .nextStart {
     font-size: 30px;
   }
- }
+
+  #offcanvasRight {
+    width: 60%;
+  }
+
+}
