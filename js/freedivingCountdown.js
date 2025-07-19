@@ -313,3 +313,26 @@ const display_starters = function (start) {
     displayedStartId = start.id;
 };
 
+
+
+let wakeLock = null;
+
+const requestWakeLock = async () => {
+  try {
+    wakeLock = await navigator.wakeLock.request('screen');
+    wakeLock.addEventListener('release', () => {
+      console.log('Wake Lock was released');
+    });
+    console.log('Wake Lock is active');
+  } catch (err) {
+    console.error(`${err.name}, ${err.message}`);
+  }
+};
+
+const handleVisibilityChange = () => {
+  if (wakeLock !== null && document.visibilityState === 'visible') {
+    requestWakeLock();
+  }
+};
+
+document.addEventListener('visibilitychange', handleVisibilityChange);
