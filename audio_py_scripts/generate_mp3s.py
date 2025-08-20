@@ -11,6 +11,9 @@ Created on Sun Feb  9 18:34:50 2025
 #       8, 9, 10, 20, 25, 26, 27, 28, 29, 30, start cancelled
 
 audios = [
+    ("5 minutes", 'otm5min.mp3'),
+    ("4 minutes", 'otm4min.mp3'),
+    ("3 minutes", 'otm3min.mp3'),
     ("Two minutes to official top", 'otm120.mp3'),
     ("1 30", 'otm90.mp3'),
     ("1 minute", 'otm60.mp3'),

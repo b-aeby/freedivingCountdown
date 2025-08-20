@@ -258,7 +258,7 @@ myOffcanvas.addEventListener('shown.bs.offcanvas', function () {
         table = new Tabulator("#startlist-table", {
             data: manual_settings, //assign data to table
             // autoColumns: true, //create columns from data field names
-            layout: "fitColumns",
+            layout: "fitData",
             groupBy: "type",
             dataTree: true,
             columns: [

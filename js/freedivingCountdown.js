@@ -4,6 +4,9 @@ var timer_display = '--:--:--';
 var displayedStartId;
 
 const audio_wn = new Audio(src = "audio/whiteNoise_3s.mp3", type = "audio/mp3")
+const audio_m5min = new Audio(src = "audio/otm5min.mp3", type = "audio/mp3")
+const audio_m4min = new Audio(src = "audio/otm4min.mp3", type = "audio/mp3")
+const audio_m3min = new Audio(src = "audio/otm3min.mp3", type = "audio/mp3")
 const audio_m120 = new Audio(src = "audio/otm120.mp3", type = "audio/mp3")
 const audio_m90 = new Audio(src = "audio/otm90.mp3", type = "audio/mp3")
 const audio_m60 = new Audio(src = "audio/otm60.mp3", type = "audio/mp3")
@@ -30,6 +33,9 @@ const audio_28 = new Audio(src = "audio/28.mp3", type = "audio/mp3")
 const audio_29 = new Audio(src = "audio/29.mp3", type = "audio/mp3")
 const audio_30 = new Audio(src = "audio/30.mp3", type = "audio/mp3")
 
+audio_m5min.preload = 'auto';
+audio_m4min.preload = 'auto';
+audio_m3min.preload = 'auto';
 audio_m120.preload = 'auto';
 audio_m90.preload = 'auto';
 audio_m60.preload = 'auto';
@@ -107,7 +113,7 @@ class aidaCountdown {
         // console.log('countDownSecond!', this);
         const timeleft = this.timer_countdown.getTotalTimeValues().seconds;
 
-        if (timeleft <= 5 * 60) {
+        if (timeleft <= 5 * 60 + 2) {
             timer_display = this.timer_countdown.getTimeValues().toString();
             if(muted){
                 toggle_mute();
@@ -119,13 +125,19 @@ class aidaCountdown {
             }            
         }
 
-        if (timeleft === 130) {
+        if (timeleft === 310) {
             // setTimeout(function(){audio_m120.play();}, delay);
             console.log("White noise to wake up audio device");
             play_audio(audio_wn);
+        } else if (timeleft === 300) {
+            play_audio(audio_m5min);
+        } else if (timeleft === 240) {
+            play_audio(audio_m4min);
+        } else if (timeleft === 180) {
+            play_audio(audio_m3min);
+        } else if (timeleft === 130) {
+            play_audio(audio_wn);
         } else if (timeleft === 120) {
-            // setTimeout(function(){audio_m120.play();}, delay);
-            console.log("2 minutes to official top");
             play_audio(audio_m120);
         } else if (timeleft === 90) {
             play_audio(audio_m90);
