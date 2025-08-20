@@ -113,7 +113,7 @@ class aidaCountdown {
         // console.log('countDownSecond!', this);
         const timeleft = this.timer_countdown.getTotalTimeValues().seconds;
 
-        if (timeleft <= 5 * 60 + 2) {
+        if (timeleft <= 6 * 60) {
             timer_display = this.timer_countdown.getTimeValues().toString();
             if(muted){
                 toggle_mute();
