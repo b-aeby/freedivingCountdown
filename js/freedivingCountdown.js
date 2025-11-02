@@ -113,7 +113,7 @@ class aidaCountdown {
         // console.log('countDownSecond!', this);
         const timeleft = this.timer_countdown.getTotalTimeValues().seconds;
 
-        if (timeleft <= 6 * 60) {
+        if (timeleft <= 3 * 60) {
             timer_display = this.timer_countdown.getTimeValues().toString();
             if(muted){
                 toggle_mute();
@@ -125,18 +125,16 @@ class aidaCountdown {
             }            
         }
 
-        if (timeleft === 310) {
-            // setTimeout(function(){audio_m120.play();}, delay);
-            console.log("White noise to wake up audio device");
+        // if (timeleft === 310 || timeleft === 250 || timeleft === 190 || timeleft === 130 || timeleft === 100 || timeleft === 70 || timeleft === 40) {
+        if (timeleft === 130 || timeleft === 100 || timeleft === 70 || timeleft === 40) {
+            // console.log("White noise to wake up audio device");
             play_audio(audio_wn);
-        } else if (timeleft === 300) {
-            play_audio(audio_m5min);
-        } else if (timeleft === 240) {
-            play_audio(audio_m4min);
-        } else if (timeleft === 180) {
-            play_audio(audio_m3min);
-        } else if (timeleft === 130) {
-            play_audio(audio_wn);
+        // } else if (timeleft === 300) {
+        //     play_audio(audio_m5min);
+        // } else if (timeleft === 240) {
+        //     play_audio(audio_m4min);
+        // } else if (timeleft === 180) {
+        //     play_audio(audio_m3min);
         } else if (timeleft === 120) {
             play_audio(audio_m120);
         } else if (timeleft === 90) {
