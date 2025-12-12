@@ -401,26 +401,69 @@ self.addEventListener('activate', function (event) {
 //   }
 // }
 
-async function networkFirst(request) {
-  try {
-    const networkResponse = await fetch(request);
+// async function networkFirst(request) {
+//   try {
+//     const networkResponse = await fetch(request);
     
-    // 1. Check if the response is successful
+//     // 1. Check if the response is successful
+//     if (networkResponse.ok) {
+//       // 2. IMPORTANT: Check if the status code is NOT 206 (Partial Content)
+//       if (networkResponse.status !== 206) { 
+//         const cache = await caches.open("fridivingCountdown");
+//         // Must use .clone() before consuming networkResponse
+//         cache.put(request, networkResponse.clone());
+//       } else {
+//         console.warn(`SW: Skipping cache for partial response: ${request.url}`);
+//       }
+//     }
+    
+//     return networkResponse;
+//   } catch (error) {
+//     // This handles network failures, but not the promise rejection from cache.put
+//     console.error(`SW: Network failure for ${request.url}. Falling back to cache.`, error);
+//     const cachedResponse = await caches.match(request);
+//     return cachedResponse || Response.error();
+//   }
+// }
+
+async function networkFirst(request) {
+  let modifiedRequest = request;
+  
+  // 1. Check if the request is for an MP3 and contains a Range header
+  if (request.url.includes('.mp3') && request.headers.has('range')) {
+    console.log(`SW: Found Range header on MP3. Rewriting request for full download: ${request.url}`);
+    
+    // 2. Clone the headers, excluding the 'Range' header
+    const newHeaders = new Headers(request.headers);
+    newHeaders.delete('range'); // <-- This is the key change!
+
+    // 3. Create a new request object without the Range header
+    modifiedRequest = new Request(request, {
+      headers: newHeaders,
+      mode: request.mode,
+      credentials: request.credentials,
+      redirect: request.redirect,
+      // Include any other relevant request properties
+    });
+  }
+  
+  try {
+    // Use the modifiedRequest for the fetch
+    const networkResponse = await fetch(modifiedRequest);
+    
+    // 4. Now, we should receive a 200 OK for the MP3 (or a failure/redirect)
     if (networkResponse.ok) {
-      // 2. IMPORTANT: Check if the status code is NOT 206 (Partial Content)
-      if (networkResponse.status !== 206) { 
+      // The status check (if (networkResponse.status !== 206)) is still a good safeguard!
+      if (networkResponse.status === 200) { 
         const cache = await caches.open("fridivingCountdown");
-        // Must use .clone() before consuming networkResponse
-        cache.put(request, networkResponse.clone());
-      } else {
-        console.warn(`SW: Skipping cache for partial response: ${request.url}`);
+        cache.put(request, networkResponse.clone()); 
+        // Use the ORIGINAL request as the key for the cache, as that's what the client will ask for later
       }
     }
     
     return networkResponse;
   } catch (error) {
-    // This handles network failures, but not the promise rejection from cache.put
-    console.error(`SW: Network failure for ${request.url}. Falling back to cache.`, error);
+    // Fallback to cache logic remains the same
     const cachedResponse = await caches.match(request);
     return cachedResponse || Response.error();
   }
