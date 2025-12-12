@@ -426,49 +426,119 @@ self.addEventListener('activate', function (event) {
 //   }
 // }
 
-async function networkFirst(request) {
-  let modifiedRequest = request;
+// async function networkFirst(request) {
+//   let modifiedRequest = request;
   
-  // 1. Check if the request is for an MP3 and contains a Range header
-  if (request.url.includes('.mp3') && request.headers.has('range')) {
-    console.log(`SW: Found Range header on MP3. Rewriting request for full download: ${request.url}`);
+//   // 1. Check if the request is for an MP3 and contains a Range header
+//   if (request.url.includes('.mp3') && request.headers.has('range')) {
+//     console.log(`SW: Found Range header on MP3. Rewriting request for full download: ${request.url}`);
     
-    // 2. Clone the headers, excluding the 'Range' header
-    const newHeaders = new Headers(request.headers);
-    newHeaders.delete('range'); // <-- This is the key change!
+//     // 2. Clone the headers, excluding the 'Range' header
+//     const newHeaders = new Headers(request.headers);
+//     newHeaders.delete('range'); // <-- This is the key change!
 
-    // 3. Create a new request object without the Range header
+//     // 3. Create a new request object without the Range header
+//     modifiedRequest = new Request(request, {
+//       headers: newHeaders,
+//       mode: request.mode,
+//       credentials: request.credentials,
+//       redirect: request.redirect,
+//       // Include any other relevant request properties
+//     });
+//   }
+  
+//   try {
+//     // Use the modifiedRequest for the fetch
+//     const networkResponse = await fetch(modifiedRequest);
+    
+//     // 4. Now, we should receive a 200 OK for the MP3 (or a failure/redirect)
+//     if (networkResponse.ok) {
+//       // The status check (if (networkResponse.status !== 206)) is still a good safeguard!
+//       if (networkResponse.status === 200) { 
+//         const cache = await caches.open("fridivingCountdown");
+//         cache.put(request, networkResponse.clone()); 
+//         // Use the ORIGINAL request as the key for the cache, as that's what the client will ask for later
+//       }
+//     }
+    
+//     return networkResponse;
+//   } catch (error) {
+//     // Fallback to cache logic remains the same
+//     const cachedResponse = await caches.match(request);
+//     return cachedResponse || Response.error();
+//   }
+// }
+
+// Set a reasonable timeout (e.g., 3 seconds) for the network attempt
+const NETWORK_TIMEOUT_MS = 3000; 
+
+async function networkFirst(request) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), NETWORK_TIMEOUT_MS);
+
+  let modifiedRequest = request;
+
+  // --- MP3/206 FIX: Rewrite request if it's an MP3 with a Range header ---
+  if (request.url.includes('.mp3') && request.headers.has('range')) {
+    const newHeaders = new Headers(request.headers);
+    newHeaders.delete('range'); 
+    
     modifiedRequest = new Request(request, {
       headers: newHeaders,
+      signal: controller.signal, // Inherit the AbortController signal
       mode: request.mode,
       credentials: request.credentials,
       redirect: request.redirect,
-      // Include any other relevant request properties
+    });
+    // Use the original request signal as a fallback if the new request object needs it
+  } else {
+    // If not modified, attach the signal to the original request
+    modifiedRequest = new Request(request, { 
+      signal: controller.signal 
     });
   }
+  // ----------------------------------------------------------------------
   
   try {
-    // Use the modifiedRequest for the fetch
+    // 1. Attempt Network Fetch (with timeout)
     const networkResponse = await fetch(modifiedRequest);
-    
-    // 4. Now, we should receive a 200 OK for the MP3 (or a failure/redirect)
+    clearTimeout(timeoutId);
+
+    // 2. Check for success and 206 (Partial Content)
     if (networkResponse.ok) {
-      // The status check (if (networkResponse.status !== 206)) is still a good safeguard!
-      if (networkResponse.status === 200) { 
+      if (networkResponse.status !== 206) {
+        
+        // Caching is safe: Status is 200-299 AND NOT 206
         const cache = await caches.open("fridivingCountdown");
+        // IMPORTANT: Use the ORIGINAL request as the key for caching
         cache.put(request, networkResponse.clone()); 
-        // Use the ORIGINAL request as the key for the cache, as that's what the client will ask for later
+        
+      } else {
+        // This should only happen for certain streaming assets that are NOT MP3s
+        console.warn(`SW: Skipping cache for partial response (206): ${request.url}`);
       }
     }
     
+    // Return the network response (must be outside the caching IF block)
     return networkResponse;
+    
   } catch (error) {
-    // Fallback to cache logic remains the same
+    clearTimeout(timeoutId);
+
+    // 3. Fallback on Error (Network Timeout or Hard Failure)
+    if (error.name === 'AbortError') {
+      console.log('SW: Network request timed out. Falling back to cache.');
+    } else {
+      console.error('SW: Hard network failure or unknown error:', error);
+    }
+
     const cachedResponse = await caches.match(request);
-    return cachedResponse || Response.error();
+    
+    // 4. Return cached response or a generic error
+    // For a user-facing PWA, Response.error() is often replaced with a static cached 'offline.html' page.
+    return cachedResponse || Response.error(); 
   }
 }
-
 
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
