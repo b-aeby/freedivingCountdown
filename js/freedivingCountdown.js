@@ -115,24 +115,24 @@ class aidaCountdown {
 
         if (timeleft <= 3 * 60) {
             timer_display = this.timer_countdown.getTimeValues().toString();
-            if(muted){
+            if (muted) {
                 toggle_mute();
             }
-            if (displayedStartId!==this.startDetails.id){
+            if (displayedStartId !== this.startDetails.id) {
                 if (this.startDetails._children) {
-                display_starters(this.startDetails);
+                    display_starters(this.startDetails);
                 }
-            }            
+            }
         }
 
         // if (timeleft === 310 || timeleft === 250 || timeleft === 190 || timeleft === 130 || timeleft === 100 || timeleft === 70 || timeleft === 40) {
         if (timeleft === 190 || timeleft === 130 || timeleft === 100 || timeleft === 70 || timeleft === 40) {
             // console.log("White noise to wake up audio device");
             play_audio(audio_wn);
-        // } else if (timeleft === 300) {
-        //     play_audio(audio_m5min);
-        // } else if (timeleft === 240) {
-        //     play_audio(audio_m4min);
+            // } else if (timeleft === 300) {
+            //     play_audio(audio_m5min);
+            // } else if (timeleft === 240) {
+            //     play_audio(audio_m4min);
         } else if (timeleft === 180) {
             play_audio(audio_m3min);
         } else if (timeleft === 120) {
@@ -159,7 +159,7 @@ class aidaCountdown {
             play_audio(audio_1);
         } else {
             // console.log(timeleft);
-            
+
         }
     }
 
@@ -280,46 +280,46 @@ setTimeout(function () {
 }, ms_offset - 50) // x ms added to avoid discrepancies between clock and timers
 
 const display_starters = function (start) {
-    $(`#starterA_firstname`).html(''); 
-    $(`#starterA_lastname`).html(''); 
+    $(`#starterA_firstname`).html('');
+    $(`#starterA_lastname`).html('');
     $(`#starterA_gender`).html('');
     $(`#starterA_country`).html('');
-    $(`#starterB_firstname`).html(''); 
-    $(`#starterB_lastname`).html(''); 
+    $(`#starterB_firstname`).html('');
+    $(`#starterB_lastname`).html('');
     $(`#starterB_gender`).html('');
     $(`#starterB_country`).html('');
-    $(`#starterC_firstname`).html(''); 
-    $(`#starterC_lastname`).html(''); 
+    $(`#starterC_firstname`).html('');
+    $(`#starterC_lastname`).html('');
     $(`#starterC_gender`).html('');
     $(`#starterC_country`).html('');
-    $(`#starterD_firstname`).html(''); 
-    $(`#starterD_lastname`).html(''); 
+    $(`#starterD_firstname`).html('');
+    $(`#starterD_lastname`).html('');
     $(`#starterD_gender`).html('');
     $(`#starterD_country`).html('');
-      
-    start._children.forEach(function(starter){ 
-        $(`#starter${starter.zone}_firstname`).html(starter.firstname); 
-        $(`#starter${starter.zone}_lastname`).html(starter.lastname); 
-        if (starter.gender == "f" ){
+
+    start._children.forEach(function (starter) {
+        $(`#starter${starter.zone}_firstname`).html(starter.firstname);
+        $(`#starter${starter.zone}_lastname`).html(starter.lastname);
+        if (starter.gender == "f") {
             $(`#starter${starter.zone}_gender`).html('<i class="fa-solid fa-venus"></i>');
-        } else if (starter.gender == "m" ) {
+        } else if (starter.gender == "m") {
             $(`#starter${starter.zone}_gender`).html('<i class="fa-solid fa-mars"></i>');
         } else {
             $(`#starter${starter.zone}_gender`).html('');
         };
 
         let country = convertIOCCountryCode(starter.country);
-        console.log(country.ISO2.toLowerCase());
-        console.log(`<img src="img/flags/h40/${country.ISO2.toLowerCase()}.png" alt="">`);
-        
-        $(`#starter${starter.zone}_country`).html(`<img src="img/flags/h40/${country.ISO2.toLowerCase()}.png" alt="" height="25">`); 
+        if (country.ISO2.toLowerCase() != 'ioc') {
+            console.log(`<img src="img/flags/h40/${country.ISO2.toLowerCase()}.png" alt="">`);
+            $(`#starter${starter.zone}_country`).html(`<img src="img/flags/h40/${country.ISO2.toLowerCase()}.png" alt="" height="25">`);
+        }
     })
     if (start.type === "STA") {
         $(".staOnly").removeClass("d-none");
     } else {
         $(".staOnly").addClass("d-none");
     }
-    
+
     displayedStartId = start.id;
 };
 
@@ -327,23 +327,23 @@ const display_starters = function (start) {
 let wakeLock = null;
 
 const requestWakeLock = async () => {
-  try {
-    wakeLock = await navigator.wakeLock.request('screen');
-    wakeLock.addEventListener('release', () => {
-      console.log('Wake Lock was released');
-    });
-    console.log('Wake Lock is active');
-  } catch (err) {
-    console.error(`${err.name}, ${err.message}`);
-  }
+    try {
+        wakeLock = await navigator.wakeLock.request('screen');
+        wakeLock.addEventListener('release', () => {
+            console.log('Wake Lock was released');
+        });
+        console.log('Wake Lock is active');
+    } catch (err) {
+        console.error(`${err.name}, ${err.message}`);
+    }
 };
 
 requestWakeLock();
 
 const handleVisibilityChange = () => {
-  if (wakeLock !== null && document.visibilityState === 'visible') {
-    requestWakeLock();
-  }
+    if (wakeLock !== null && document.visibilityState === 'visible') {
+        requestWakeLock();
+    }
 };
 
 document.addEventListener('visibilitychange', handleVisibilityChange);

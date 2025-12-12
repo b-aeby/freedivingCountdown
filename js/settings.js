@@ -284,7 +284,9 @@ $("#switchMode").on("change", function () {
         $("#switchMode_label").html("Mode startlist");
         // $("#startlist-table").removeClass("d-none");
         $("#manualSettings").addClass("d-none");
-        table.setData(startlist);
+        if (table !== undefined) {
+            table.setData(startlist);
+        }
         resetCountdowns();
         setupCountdowns();
     } else {
@@ -292,7 +294,9 @@ $("#switchMode").on("change", function () {
         $("#switchMode_label").html("Mode manuel");
         // $("#startlist-table").addClass("d-none");
         $("#manualSettings").removeClass("d-none");
-        table.setData(manual_settings);
+        if (table !== undefined) {
+            table.setData(manual_settings);
+        }
         resetCountdowns();
         setupCountdowns();
     }
@@ -322,7 +326,7 @@ const programManualStarts = (settingsForm) => {
 }
 
 
-const setupCountdowns = () => {    
+const setupCountdowns = () => {
     var actualSettings;
     if (settings_mode === "startlist") {
         actualSettings = startlist;

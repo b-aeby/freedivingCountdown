@@ -384,19 +384,48 @@ self.addEventListener('activate', function (event) {
 //   )
 // });
 // ---------------------------------------------------------------------------------------------------------------------
+
+
+// async function networkFirst(request) {
+//   try {
+//     const networkResponse = await fetch(request);
+
+//     if (networkResponse.ok) {
+//       const cache = await caches.open("fridivingCountdown");
+//       cache.put(request, networkResponse.clone());
+//     }
+//     return networkResponse;
+//   } catch (error) {
+//     const cachedResponse = await caches.match(request);
+//     return cachedResponse || Response.error();
+//   }
+// }
+
 async function networkFirst(request) {
   try {
     const networkResponse = await fetch(request);
+    
+    // 1. Check if the response is successful
     if (networkResponse.ok) {
-      const cache = await caches.open("fridivingCountdown");
-      cache.put(request, networkResponse.clone());
+      // 2. IMPORTANT: Check if the status code is NOT 206 (Partial Content)
+      if (networkResponse.status !== 206) { 
+        const cache = await caches.open("fridivingCountdown");
+        // Must use .clone() before consuming networkResponse
+        cache.put(request, networkResponse.clone());
+      } else {
+        console.warn(`SW: Skipping cache for partial response: ${request.url}`);
+      }
     }
+    
     return networkResponse;
   } catch (error) {
+    // This handles network failures, but not the promise rejection from cache.put
+    console.error(`SW: Network failure for ${request.url}. Falling back to cache.`, error);
     const cachedResponse = await caches.match(request);
     return cachedResponse || Response.error();
   }
 }
+
 
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
