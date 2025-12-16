@@ -178,3 +178,8 @@
   }
 
 }
+
+
+#update-toast.show {
+  display: block !important;
+}

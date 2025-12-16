@@ -62,7 +62,30 @@ audio_28.preload = 'auto';
 audio_29.preload = 'auto';
 audio_30.preload = 'auto';
 
+let newWorker;
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').then(reg => {
+    reg.addEventListener('updatefound', () => {
+      newWorker = reg.installing;
+      newWorker.addEventListener('statechange', () => {
+        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+          // New version is ready! Show the toast.
+          showUpdateToast();
+        }
+      });
+    });
+  });
+}
+
+function showUpdateToast() {
+  const toast = document.getElementById('update-toast');
+  toast.classList.add('show');
+}
+
+function reloadPage() {
+  window.location.reload();
+}
 
 const toggle_mute = () => {
     if (muted == false) {
