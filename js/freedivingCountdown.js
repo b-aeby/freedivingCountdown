@@ -62,6 +62,7 @@ audio_28.preload = 'auto';
 audio_29.preload = 'auto';
 audio_30.preload = 'auto';
 
+// test update
 let newWorker;
 
 if ('serviceWorker' in navigator) {
