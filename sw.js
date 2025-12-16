@@ -1,44 +1,35 @@
-// todo: 'install' event is for old caches deletion. use it?
-// todo: split filesToCache in two arrays for easy configuration and merge them
-// todo: use typescript. referernces:
-// https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/service_worker_api
+/**
+ * PWA: Freediving Countdown
+ * Strategy: Network-First (UI/Logic) + Cache-First (Media/Flags)
+ */
 
-var cacheName = 'fridivingCountdown';
+const CACHE_NAME = 'fridivingCountdown-v1';
 
-var filesToCache = [
-
-  // infrastructure files ----------------------------------------------------------------------------------------------
-  // '/',
+// 1. Core App Shell: Essential for the app to function
+const coreAssets = [
   'index.html',
   'sw.js',
   'manifest.json',
-  'favicon.png',
-  //--------------------------------------------------------------------------------------------------------------------
-
-  // app files ---------------------------------------------------------------------------------------------------------
   'css/styles.css',
   'js/settings.js',
   'js/freedivingCountdown.js',
-  'img/offline-img.png',
-  // -------------------------------------------------------------------------------------------------------------------
+  'favicon.png'
+];
 
-  // vendor files ------------------------------------------------------------------------------------------------------
-  // - luxon
+// 2. Vendor Libraries: Change rarely
+const vendorAssets = [
   'vendor/luxon/luxon.min.js',
-  // - easytimer
   'vendor/easytimer/easytimer.min.js',
-  // - jquery
   'vendor/jquery/jquery-3.7.1.min.js',
-  // - tabulator
   'vendor/tabulator/css/tabulator_bootstrap5.min.css',
-  // 'vendor/tabulator/css/tabulator_bootstrap5.min.css.map',
   'vendor/tabulator/js/tabulator.min.js',
-  // 'vendor/tabulator/js/tabulator.min.js.map',
-  // BOOTSTRAP
   'vendor/bootstrap/css/bootstrap.min.css',
   'vendor/bootstrap/js/bootstrap.bundle.min.js',
-  // -------------------------------------------------------------------------------------------------------------------
+  'fonts/DigitalNumbers-Regular.ttf'
+];
 
+// 3. Media & Flags: Large or numerous files (Cache-First)
+const mediaAssets = [
   // Audio files
   'audio/whiteNoise_3s.mp3',
   'audio/otm120.mp3',
@@ -65,9 +56,6 @@ var filesToCache = [
   'audio/29.mp3',
   'audio/30.mp3',
   'audio/start_cancelled.mp3',
-
-  // fonts:
-  'fonts/DigitalNumbers-Regular.ttf',
 
   // flags:
   'img/flags/h40/mq.png',
@@ -324,223 +312,82 @@ var filesToCache = [
   'img/flags/h40/ie.png',
   'img/flags/h40/au.png',
   'img/flags/h40/pr.png'
-  
 ];
 
-// todo: check if service worker is installed before
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').then(function () {
-    console.log('sw: registration ok');
-  }).catch(function (err) {
-    console.error(err);
-  });
-}
-// ---------------------------------------------------------------------------------------------------------------------
-/**
- * 'Install' event. Writing files to browser cache
- *
- * @param {string} Event name ('install')
- * @param {function} Callback function with event data
- *
- */
-self.addEventListener('install', function (event) {
+// --- LIFECYCLE EVENTS ---
+
+self.addEventListener('install', (event) => {
+  self.skipWaiting(); 
   event.waitUntil(
-    caches.open(cacheName).then(function (cache) {
-      console.log('sw: writing files into cache');
-      return cache.addAll(filesToCache);
+    caches.open(CACHE_NAME).then(async (cache) => {
+      console.log('SW: Installing Core Assets');
+      // Install Core and Vendor first (Atomic)
+      await cache.addAll([...coreAssets, ...vendorAssets]);
+      
+      // Install Media assets (Non-blocking)
+      mediaAssets.forEach(url => {
+        cache.add(url).catch(err => console.warn(`SW: Failed to lazy-cache ${url}`));
+      });
     })
-  )
+  );
 });
-// ---------------------------------------------------------------------------------------------------------------------
-/**
- * 'Activate' event. Service worker is activated
- *
- * @param {string} Event name ('activate')
- * @param {function} Callback function with event data
- *
- */
-self.addEventListener('activate', function (event) {
-  console.log('sw: service worker ready and activated', event);
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((keys) => {
+      return Promise.all(
+        keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
+      );
+    }).then(() => self.clients.claim())
+  );
 });
-// ---------------------------------------------------------------------------------------------------------------------
-/**
- * 'Fetch' event. Browser tries to get resources making a request
- *
- * @param {string} Event name ('fetch')
- * @param {function} Callback function with event data
- *
- */
-// self.addEventListener('fetch', function(event) {
-//   event.respondWith(
-//     // test if the request is cached
-//     caches.match(event.request).then(function(response) {
-//       // 1) if response cached, it will be returned from browser cache
-//       // 2) if response not cached, fetch resource from network
-//       return response || fetch(event.request);
-//     }).catch(function (err) {
-//       // if response not cached and network not available an error is thrown => return fallback image
-//       return caches.match('img/offline-img.png');
-//     })
-//   )
-// });
-// ---------------------------------------------------------------------------------------------------------------------
 
+// --- FETCH STRATEGY ---
 
-// async function networkFirst(request) {
-//   try {
-//     const networkResponse = await fetch(request);
+self.addEventListener('fetch', (event) => {
+  const url = new URL(event.request.url);
 
-//     if (networkResponse.ok) {
-//       const cache = await caches.open("fridivingCountdown");
-//       cache.put(request, networkResponse.clone());
-//     }
-//     return networkResponse;
-//   } catch (error) {
-//     const cachedResponse = await caches.match(request);
-//     return cachedResponse || Response.error();
-//   }
-// }
-
-// async function networkFirst(request) {
-//   try {
-//     const networkResponse = await fetch(request);
-    
-//     // 1. Check if the response is successful
-//     if (networkResponse.ok) {
-//       // 2. IMPORTANT: Check if the status code is NOT 206 (Partial Content)
-//       if (networkResponse.status !== 206) { 
-//         const cache = await caches.open("fridivingCountdown");
-//         // Must use .clone() before consuming networkResponse
-//         cache.put(request, networkResponse.clone());
-//       } else {
-//         console.warn(`SW: Skipping cache for partial response: ${request.url}`);
-//       }
-//     }
-    
-//     return networkResponse;
-//   } catch (error) {
-//     // This handles network failures, but not the promise rejection from cache.put
-//     console.error(`SW: Network failure for ${request.url}. Falling back to cache.`, error);
-//     const cachedResponse = await caches.match(request);
-//     return cachedResponse || Response.error();
-//   }
-// }
-
-// async function networkFirst(request) {
-//   let modifiedRequest = request;
+  // STRATEGY 1: Cache-First for Audio, Fonts, and Flags
+  // This avoids the "Range: bytes=0-" header issues and "Lie-fi" freezes
+  const isMedia = url.pathname.match(/\.(mp3|ttf|png|jpg|jpeg|gif)$/);
   
-//   // 1. Check if the request is for an MP3 and contains a Range header
-//   if (request.url.includes('.mp3') && request.headers.has('range')) {
-//     console.log(`SW: Found Range header on MP3. Rewriting request for full download: ${request.url}`);
-    
-//     // 2. Clone the headers, excluding the 'Range' header
-//     const newHeaders = new Headers(request.headers);
-//     newHeaders.delete('range'); // <-- This is the key change!
-
-//     // 3. Create a new request object without the Range header
-//     modifiedRequest = new Request(request, {
-//       headers: newHeaders,
-//       mode: request.mode,
-//       credentials: request.credentials,
-//       redirect: request.redirect,
-//       // Include any other relevant request properties
-//     });
-//   }
-  
-//   try {
-//     // Use the modifiedRequest for the fetch
-//     const networkResponse = await fetch(modifiedRequest);
-    
-//     // 4. Now, we should receive a 200 OK for the MP3 (or a failure/redirect)
-//     if (networkResponse.ok) {
-//       // The status check (if (networkResponse.status !== 206)) is still a good safeguard!
-//       if (networkResponse.status === 200) { 
-//         const cache = await caches.open("fridivingCountdown");
-//         cache.put(request, networkResponse.clone()); 
-//         // Use the ORIGINAL request as the key for the cache, as that's what the client will ask for later
-//       }
-//     }
-    
-//     return networkResponse;
-//   } catch (error) {
-//     // Fallback to cache logic remains the same
-//     const cachedResponse = await caches.match(request);
-//     return cachedResponse || Response.error();
-//   }
-// }
-
-// Set a reasonable timeout (e.g., 3 seconds) for the network attempt
-const NETWORK_TIMEOUT_MS = 3000; 
-
-async function networkFirst(request) {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), NETWORK_TIMEOUT_MS);
-
-  let modifiedRequest = request;
-
-  // --- MP3/206 FIX: Rewrite request if it's an MP3 with a Range header ---
-  if (request.url.includes('.mp3') && request.headers.has('range')) {
-    const newHeaders = new Headers(request.headers);
-    newHeaders.delete('range'); 
-    
-    modifiedRequest = new Request(request, {
-      headers: newHeaders,
-      signal: controller.signal, // Inherit the AbortController signal
-      mode: request.mode,
-      credentials: request.credentials,
-      redirect: request.redirect,
-    });
-    // Use the original request signal as a fallback if the new request object needs it
-  } else {
-    // If not modified, attach the signal to the original request
-    modifiedRequest = new Request(request, { 
-      signal: controller.signal 
-    });
+  if (isMedia) {
+    event.respondWith(
+      caches.match(event.request).then((res) => {
+        return res || fetch(event.request).then((networkRes) => {
+          return caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, networkRes.clone());
+            return networkRes;
+          });
+        });
+      })
+    );
+  } 
+  // STRATEGY 2: Network-First for HTML, JS, CSS
+  else {
+    event.respondWith(networkFirstWithTimeout(event.request));
   }
-  // ----------------------------------------------------------------------
-  
+});
+
+async function networkFirstWithTimeout(request) {
+  const timeoutMs = 4000; // 4 second limit
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeoutMs);
+
   try {
-    // 1. Attempt Network Fetch (with timeout)
-    const networkResponse = await fetch(modifiedRequest);
-    clearTimeout(timeoutId);
+    const response = await fetch(request, { signal: controller.signal });
+    clearTimeout(id);
 
-    // 2. Check for success and 206 (Partial Content)
-    if (networkResponse.ok) {
-      if (networkResponse.status !== 206) {
-        
-        // Caching is safe: Status is 200-299 AND NOT 206
-        const cache = await caches.open("fridivingCountdown");
-        // IMPORTANT: Use the ORIGINAL request as the key for caching
-        cache.put(request, networkResponse.clone()); 
-        
-      } else {
-        // This should only happen for certain streaming assets that are NOT MP3s
-        console.warn(`SW: Skipping cache for partial response (206): ${request.url}`);
-      }
+    if (response.ok) {
+      const cache = await caches.open(CACHE_NAME);
+      cache.put(request, response.clone());
+      return response;
     }
-    
-    // Return the network response (must be outside the caching IF block)
-    return networkResponse;
-    
-  } catch (error) {
-    clearTimeout(timeoutId);
-
-    // 3. Fallback on Error (Network Timeout or Hard Failure)
-    if (error.name === 'AbortError') {
-      console.log('SW: Network request timed out. Falling back to cache.');
-    } else {
-      console.error('SW: Hard network failure or unknown error:', error);
-    }
-
+    throw new Error('Network status not OK');
+  } catch (err) {
+    clearTimeout(id);
     const cachedResponse = await caches.match(request);
-    
-    // 4. Return cached response or a generic error
-    // For a user-facing PWA, Response.error() is often replaced with a static cached 'offline.html' page.
-    return cachedResponse || Response.error(); 
+    // If no network and no cache, return the main index.html as a fallback
+    return cachedResponse || caches.match('index.html');
   }
 }
-
-self.addEventListener("fetch", (event) => {
-  const url = new URL(event.request.url);
-  event.respondWith(networkFirst(event.request));
-});
