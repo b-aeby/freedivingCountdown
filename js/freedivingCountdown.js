@@ -33,34 +33,43 @@ const audio_28 = new Audio(src = "audio/28.mp3", type = "audio/mp3")
 const audio_29 = new Audio(src = "audio/29.mp3", type = "audio/mp3")
 const audio_30 = new Audio(src = "audio/30.mp3", type = "audio/mp3")
 
-audio_m5min.preload = 'auto';
-audio_m4min.preload = 'auto';
-audio_m3min.preload = 'auto';
-audio_m120.preload = 'auto';
-audio_m90.preload = 'auto';
-audio_m60.preload = 'auto';
-audio_m30.preload = 'auto';
-audio_ot.preload = 'auto';
-audio_plus_1.preload = 'auto';
-audio_start_cancelled.preload = 'auto';
+// audio_m5min.preload = 'auto';
+// audio_m4min.preload = 'auto';
+// audio_m3min.preload = 'auto';
+// audio_m120.preload = 'auto';
+// audio_m90.preload = 'auto';
+// audio_m60.preload = 'auto';
+// audio_m30.preload = 'auto';
+// audio_ot.preload = 'auto';
+// audio_plus_1.preload = 'auto';
+// audio_start_cancelled.preload = 'auto';
 
-audio_1.preload = 'auto';
-audio_2.preload = 'auto';
-audio_3.preload = 'auto';
-audio_4.preload = 'auto';
-audio_5.preload = 'auto';
-audio_6.preload = 'auto';
-audio_7.preload = 'auto';
-audio_8.preload = 'auto';
-audio_9.preload = 'auto';
-audio_10.preload = 'auto';
-audio_20.preload = 'auto';
-audio_25.preload = 'auto';
-audio_26.preload = 'auto';
-audio_27.preload = 'auto';
-audio_28.preload = 'auto';
-audio_29.preload = 'auto';
-audio_30.preload = 'auto';
+// audio_1.preload = 'auto';
+// audio_2.preload = 'auto';
+// audio_3.preload = 'auto';
+// audio_4.preload = 'auto';
+// audio_5.preload = 'auto';
+// audio_6.preload = 'auto';
+// audio_7.preload = 'auto';
+// audio_8.preload = 'auto';
+// audio_9.preload = 'auto';
+// audio_10.preload = 'auto';
+// audio_20.preload = 'auto';
+// audio_25.preload = 'auto';
+// audio_26.preload = 'auto';
+// audio_27.preload = 'auto';
+// audio_28.preload = 'auto';
+// audio_29.preload = 'auto';
+// audio_30.preload = 'auto';
+
+// Charger tous les fichiers audio au démarrage
+function preloadAudio() {
+    [audio_wn, audio_m5min, audio_m4min, audio_m3min, audio_m120, audio_m90, audio_m60, audio_m30, audio_ot, audio_plus_1, audio_start_cancelled, audio_1, audio_2, audio_3, audio_4, audio_5, audio_6, audio_7, audio_8, audio_9, audio_10, audio_20, audio_25, audio_26, audio_27, audio_28, audio_29, audio_30].forEach(audio => {
+        audio.load();
+    });
+}
+
+preloadAudio();
 
 let newWorker;
 
@@ -120,147 +129,163 @@ const play_audio = (sound) => {
     }
 }
 
+let activeCountdown = null;
+
 class aidaCountdown {
     constructor(start) {
         this.startDetails = start;
-        this.startTime = luxon.DateTime.fromObject({ hours: start.time.split(":")[0], minutes: start.time.split(":")[1] });
-        console.log(this.startTime.toString());
-        this.timer_countdown = new easytimer.Timer();
-        this.timer_countdown.addEventListener('secondsUpdated', this.countDownSecond);
-        this.timer_countdown.addEventListener('targetAchieved', this.countDownAchieved);
-        this.timer_countUp = new easytimer.Timer();
-        this.timer_countUp.addEventListener('secondsUpdated', this.countUpSecond);
+        const today = new Date();
+        const [hours, minutes] = start.time.split(":");
+        this.startTimeDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), hours, minutes, 0);
+        console.log(this.startTimeDate.toString());
+        this.timeDelta = new TimeDelta(this.startTimeDate);
+        this.timerInterval = null;
+        this.startAnnounced = false;
+        this.hasStarted = false;
     }
 
-    countDownSecond = (event) => {
-        // console.log('countDownSecond!', this);
-        const timeleft = this.timer_countdown.getTotalTimeValues().seconds;
+    timerTick = () => {
+        const deltaT = this.timeDelta.getTimeDeltaInSeconds();
 
-        if (timeleft <= 3 * 60) {
-            timer_display = this.timer_countdown.getTimeValues().toString();
-            if (muted) {
-                toggle_mute();
-            }
-            if (displayedStartId !== this.startDetails.id) {
-                if (this.startDetails._children) {
-                    display_starters(this.startDetails);
+        // Afficher le timer
+        timer_display = this.formatTimeDelta(deltaT);
+
+        if (deltaT > 0) {
+            // AVANT le départ (deltaT > 0)
+            this.hasStarted = false;
+            if (deltaT <= 3 * 60) {
+                // Afficher les participants 3 minutes avant
+                if (muted) {
+                    toggle_mute();
+                }
+                if (displayedStartId !== this.startDetails.id) {
+                    if (this.startDetails._children) {
+                        display_starters(this.startDetails);
+                    }
                 }
             }
-        }
 
-        // if (timeleft === 310 || timeleft === 250 || timeleft === 190 || timeleft === 130 || timeleft === 100 || timeleft === 70 || timeleft === 40) {
-        if (timeleft === 190 || timeleft === 130 || timeleft === 100 || timeleft === 70 || timeleft === 40) {
-            // console.log("White noise to wake up audio device");
-            play_audio(audio_wn);
-            // } else if (timeleft === 300) {
-            //     play_audio(audio_m5min);
-            // } else if (timeleft === 240) {
-            //     play_audio(audio_m4min);
-        } else if (timeleft === 180) {
-            play_audio(audio_m3min);
-        } else if (timeleft === 120) {
-            play_audio(audio_m120);
-        } else if (timeleft === 90) {
-            play_audio(audio_m90);
-        } else if (timeleft === 60) {
-            play_audio(audio_m60);
-        } else if (timeleft === 30) {
-            play_audio(audio_m30);
-        } else if (timeleft === 20) {
-            play_audio(audio_20);
-        } else if (timeleft === 10) {
-            play_audio(audio_10);
-        } else if (timeleft === 5) {
-            play_audio(audio_5);
-        } else if (timeleft === 4) {
-            play_audio(audio_4);
-        } else if (timeleft === 3) {
-            play_audio(audio_3);
-        } else if (timeleft === 2) {
-            play_audio(audio_2);
-        } else if (timeleft === 1) {
-            play_audio(audio_1);
-        } else {
-            // console.log(timeleft);
+            // Annonces avant le départ
+            if (deltaT === 190 || deltaT === 130 || deltaT === 100 || deltaT === 70 || deltaT === 40) {
+                play_audio(audio_wn);
+                console.log('WN');
+            } else if (deltaT === 180) {
+                play_audio(audio_m3min);
+            } else if (deltaT === 120) {
+                play_audio(audio_m120);
+            } else if (deltaT === 90) {
+                play_audio(audio_m90);
+            } else if (deltaT === 60) {
+                play_audio(audio_m60);
+            } else if (deltaT === 30) {
+                play_audio(audio_m30);
+            } else if (deltaT === 20) {
+                play_audio(audio_20);
+            } else if (deltaT === 10) {
+                play_audio(audio_10);
+            } else if (deltaT === 5) {
+                play_audio(audio_5);
+            } else if (deltaT === 4) {
+                play_audio(audio_4);
+            } else if (deltaT === 3) {
+                play_audio(audio_3);
+            } else if (deltaT === 2) {
+                play_audio(audio_2);
+            } else if (deltaT === 1) {
+                play_audio(audio_1);
+            }
+        } else if (deltaT <= 0) {
+            // APRÈS le départ (deltaT < 0)
+            this.hasStarted = true;
+            const timePlus = Math.abs(deltaT);
 
-        }
-    }
+            // Annoncer le départ une seule fois
+            if (!this.startAnnounced) {
+                console.log('Start achieved!', this);
+                play_audio(audio_ot);
+                this.startAnnounced = true;
+            }
 
-    countDownAchieved = (event) => {
-        console.log('countDownAchieved!', this);
-        this.timer_countUp.start();
-        play_audio(audio_ot);
-    }
+            // Arrêter après 31 secondes
+            if (timePlus >= 31) {
+                play_audio(audio_start_cancelled);
+                this.cancel();
+                timer_display = '--:--:--';
+                return;
+            }
 
-    countUpSecond = (event) => {
-        // console.log('countUpSecond!', this);
-        var timeplus = this.timer_countUp.getTotalTimeValues().seconds;
-        timer_display = this.timer_countUp.getTimeValues().toString()
-        if (timeplus === 31) {
-            play_audio(audio_start_cancelled);
-            this.timer_countUp.stop();
-            timer_display = '--:--:--';
-        } else if (timeplus === 30) {
-            play_audio(audio_30);
-        } else if (timeplus === 29) {
-            play_audio(audio_29);
-        } else if (timeplus === 28) {
-            play_audio(audio_28);
-        } else if (timeplus === 27) {
-            play_audio(audio_27);
-        } else if (timeplus === 26) {
-            play_audio(audio_26);
-        } else if (timeplus === 25) {
-            play_audio(audio_25);
-        } else if (timeplus === 20) {
-            play_audio(audio_20);
-        } else if (timeplus === 10) {
-            play_audio(audio_10);
-        } else if (timeplus === 9) {
-            play_audio(audio_9);
-        } else if (timeplus === 8) {
-            play_audio(audio_8);
-        } else if (timeplus === 7) {
-            play_audio(audio_7);
-        } else if (timeplus === 6) {
-            play_audio(audio_6);
-        } else if (timeplus === 5) {
-            play_audio(audio_5);
-        } else if (timeplus === 4) {
-            play_audio(audio_4);
-        } else if (timeplus === 3) {
-            play_audio(audio_3);
-        } else if (timeplus === 2) {
-            play_audio(audio_2);
-        } else if (timeplus === 1) {
-            play_audio(audio_plus_1);
-        } else {
-            // console.log(timeplus);
+            // Annonces après le départ
+            if (timePlus === 30) {
+                play_audio(audio_30);
+            } else if (timePlus === 29) {
+                play_audio(audio_29);
+            } else if (timePlus === 28) {
+                play_audio(audio_28);
+            } else if (timePlus === 27) {
+                play_audio(audio_27);
+            } else if (timePlus === 26) {
+                play_audio(audio_26);
+            } else if (timePlus === 25) {
+                play_audio(audio_25);
+            } else if (timePlus === 20) {
+                play_audio(audio_20);
+            } else if (timePlus === 10) {
+                play_audio(audio_10);
+            } else if (timePlus === 9) {
+                play_audio(audio_9);
+            } else if (timePlus === 8) {
+                play_audio(audio_8);
+            } else if (timePlus === 7) {
+                play_audio(audio_7);
+            } else if (timePlus === 6) {
+                play_audio(audio_6);
+            } else if (timePlus === 5) {
+                play_audio(audio_5);
+            } else if (timePlus === 4) {
+                play_audio(audio_4);
+            } else if (timePlus === 3) {
+                play_audio(audio_3);
+            } else if (timePlus === 2) {
+                play_audio(audio_2);
+            } else if (timePlus === 1) {
+                play_audio(audio_plus_1);
+            }
         }
     }
 
     start() {
-        const now = luxon.DateTime.now();
-        var deltaT = this.startTime.diff(now, 'seconds');
-        var deltaT_seconds = deltaT.values.seconds.toFixed(0);
-        var deltaT_millisecs = (1000 * deltaT.values.seconds % 1).toFixed(0);
+        const now = new Date();
+        const deltaT_ms = this.timeDelta.getTimeDelta(now);
+        const deltaT_seconds = Math.floor(deltaT_ms / 1000);
         console.log(deltaT_seconds);
-        console.log(this.startTime.toString());
+        console.log(this.startTimeDate.toString());
         console.log(now.toString());
-        console.log(deltaT);
+        console.log(deltaT_ms);
         if (deltaT_seconds > 10) {
-            setTimeout(() => {
-                this.timer_countdown.start({
-                    countdown: true,
-                    startValues: { seconds: deltaT_seconds }
-                });
-            }, deltaT_millisecs)
+            // Remplacer activeCountdown seulement si :
+            // - Il n'y a pas de départ actif, OU
+            // - Le départ actif est terminé (hasStarted=true et on continue jusqu'au cancel), OU
+            // - Ce nouveau départ est plus proche (et l'actif n'a pas encore commencé)
+            if (!activeCountdown || activeCountdown.hasStarted === false && deltaT_seconds < activeCountdown.timeDelta.getTimeDeltaInSeconds()) {
+                activeCountdown = this;
+            }
+            this.timerTick();
         }
     }
 
     cancel() {
-        this.timer_countdown.stop();
-        this.timer_countUp.stop();
+        activeCountdown = null;
+        this.startAnnounced = false;
+    }
+
+    formatTimeDelta(seconds) {
+        const h = Math.floor(Math.abs(seconds) / 3600);
+        const m = Math.floor((Math.abs(seconds) % 3600) / 60);
+        const s = Math.abs(seconds) % 60;
+        const h_str = h < 10 ? `0${h}` : `${h}`;
+        const m_str = m < 10 ? `0${m}` : `${m}`;
+        const s_str = s < 10 ? `0${s}` : `${s}`;
+        return `${h_str}:${m_str}:${s_str}`;
     }
 }
 
@@ -292,8 +317,13 @@ function display_clock() {
     const time = `${hours_str}:${minutes_str}:${seconds_str}`;
 
     $('.clock').html(time);
+    
+    // Appeler timerTick pour le compte à rebours s'il y en a un d'actif
+    if (activeCountdown) {
+        activeCountdown.timerTick();
+    }
+    
     $('.countdown').html(timer_display);
-
 }
 
 // Sync clock display on full second
