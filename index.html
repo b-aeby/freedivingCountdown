@@ -20,6 +20,7 @@
   <link href="vendor/tabulator/css/tabulator_bootstrap5.min.css" rel="stylesheet">
   <script src="vendor/luxon/luxon.min.js"></script>
   <script src="vendor/country-code-converter/index.js"></script>
+  <script type="text/javascript" src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
 
 </head>
 
@@ -158,6 +159,25 @@
           <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="switchMode">
             <label class="form-check-label" for="flexSwitchCheckDefault" id="switchMode_label">Mode manuel</label>
+          </div>
+          <!-- <div class="form-check form-switch mt-2">
+            <input class="form-check-input" type="checkbox" id="switchImport">
+            <label class="form-check-label" for="switchImport">Importer fichier Excel</label>
+          </div> -->
+        </form>
+      </div>
+
+      <div id="startlistSettings" class="d-none">
+        <hr>
+        <form action="javascript:;" onsubmit="importExcelFile( this )">
+          <div class="mb-3">
+            <label for="excelFile" class="form-label">Importer un fichier Excel</label>
+            <input class="form-control" type="file" id="excelFile" name="excelFile" accept=".xlsx,.xls" required>
+            <small class="form-text text-muted">Fichier Excel structuré avec Official Top (colonne L) et Zone (colonne M)</small>
+          </div>
+          <hr>
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary" type="submit">Importer</button>
           </div>
         </form>
       </div>

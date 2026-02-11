@@ -131,6 +131,30 @@ const play_audio = (sound) => {
 
 let activeCountdown = null;
 
+const evaluateNextCountdown = () => {
+    if (typeof countdowns === 'undefined' || countdowns.length === 0) {
+        activeCountdown = null;
+        return;
+    }
+    
+    let nextCountdown = null;
+    let closestDeltaT = Infinity;
+    
+    countdowns.forEach((cd) => {
+        if (!cd.hasStarted) {
+            const deltaT = cd.timeDelta.getTimeDeltaInSeconds();
+            // On cherche le départ le plus proche qui est encore à venir
+            // et qui est au moins 1 minute avant le départ (+ "intervalle" - 1 minute)
+            if (deltaT > -60 && deltaT < closestDeltaT) {
+                closestDeltaT = deltaT;
+                nextCountdown = cd;
+            }
+        }
+    });
+    
+    activeCountdown = nextCountdown;
+};
+
 class aidaCountdown {
     constructor(start) {
         this.startDetails = start;
@@ -276,6 +300,7 @@ class aidaCountdown {
     cancel() {
         activeCountdown = null;
         this.startAnnounced = false;
+        evaluateNextCountdown();
     }
 
     formatTimeDelta(seconds) {
