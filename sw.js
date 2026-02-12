@@ -12,6 +12,7 @@ const coreAssets = [
   'manifest.json',
   'css/styles.css',
   'js/settings.js',
+  'js/TimeDelta.js',
   'js/freedivingCountdown.js',
   'favicon.png'
 ];
@@ -19,12 +20,12 @@ const coreAssets = [
 // 2. Vendor Libraries: Change rarely
 const vendorAssets = [
   'vendor/luxon/luxon.min.js',
-  'vendor/easytimer/easytimer.min.js',
   'vendor/jquery/jquery-3.7.1.min.js',
   'vendor/tabulator/css/tabulator_bootstrap5.min.css',
   'vendor/tabulator/js/tabulator.min.js',
   'vendor/bootstrap/css/bootstrap.min.css',
   'vendor/bootstrap/js/bootstrap.bundle.min.js',
+  'vendor/sheet-js/xlsx.full.min.js',
   'fonts/DigitalNumbers-Regular.ttf'
 ];
 
