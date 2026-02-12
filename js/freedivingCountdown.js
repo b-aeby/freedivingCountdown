@@ -2,8 +2,11 @@ const delay = 0;
 var muted = false;
 var timer_display = '--:--:--';
 var displayedStartId;
+var wn_volume = 0.5;
 
 const audio_wn = new Audio(src = "audio/whiteNoise_3s.mp3", type = "audio/mp3")
+audio_wn.volume = wn_volume;
+
 const audio_m5min = new Audio(src = "audio/otm5min.mp3", type = "audio/mp3")
 const audio_m4min = new Audio(src = "audio/otm4min.mp3", type = "audio/mp3")
 const audio_m3min = new Audio(src = "audio/otm3min.mp3", type = "audio/mp3")
@@ -122,10 +125,8 @@ $("#btn-mute").on("click", function (event) {
 });
 
 const play_audio = (sound) => {
-    if (!muted) {
-        setTimeout(function () {
-            sound.play();
-        }, delay);
+    if (!muted) {        
+            sound.play({ delay: delay });
     }
 }
 
