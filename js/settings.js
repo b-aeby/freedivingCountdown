@@ -32,9 +32,9 @@ var myOffcanvas = document.getElementById('offcanvasRight')
 myOffcanvas.addEventListener('shown.bs.offcanvas', function () {
     // do something...
     if (table === undefined) {
-        console.log('table undefined');
+        console.log('Startlist table creation');
         table = new Tabulator("#startlist-table", {
-            data: manual_settings, //assign data to table
+            data: settings_mode === "manual" ? manual_settings : startlist, //assign data to table
             layout: "fitData",
             groupBy: "type",
             dataTree: true,
@@ -213,8 +213,19 @@ const resetCountdowns = () => {
 }
 
 
+function saveStartlistToLocalStorage(startlist) {
+  localStorage.setItem('startlist', JSON.stringify(startlist));
+}
+
+function loadStartlistFromLocalStorage() {
+  const startlistString = localStorage.getItem('startlist');
+  return startlistString ? JSON.parse(startlistString) : null;
+}
+
 // Excel import function
 const importExcelFile = (form) => {
+    event.preventDefault();
+
     const file = form.excelFile.files[0];
     if (!file) {
         alert('Veuillez sélectionner un fichier');
@@ -236,6 +247,9 @@ const importExcelFile = (form) => {
             startlist = buildStartlistFromJudgingSheet(jsonData);
             console.log('Imported startlist:', startlist);
             
+            saveStartlistToLocalStorage(startlist);
+            displayStartlist(startlist);
+
             if (startlist.length === 0) {
                 alert('Aucun départ trouvé dans le fichier');
                 return;
@@ -366,7 +380,7 @@ const buildStartlistFromJudgingSheet = (rows) => {
                 startGroups.set(groupKey, { 
                     type: eventType, 
                     time: timeStr,
-                    children: [] 
+                    children: []
                 });
             }
             
@@ -411,6 +425,14 @@ const buildStartlistFromJudgingSheet = (rows) => {
     return startlist;
 };
 
+function displayStartlist(startlist) {
+  // ... (Votre code pour afficher la startlist dans un tableau, une liste, etc.) ...
+  console.log("Affichage de la startlist :", startlist); // Exemple
+  if (table !== undefined) {
+    table.setData(startlist);
+  }
+}
+
 // Event listener for import mode - force startlist mode if import is checked
 $("#switchImport").on("change", function () {
     if ($(this).is(":checked")) {
@@ -421,4 +443,27 @@ $("#switchImport").on("change", function () {
 
 // setupCountdowns();
 resetCountdowns();
-$("#switchMode").trigger("change");
+// $("#switchMode").trigger("change");
+
+
+$(document).ready(function() {
+    console.log('************************************3ready!!! ***************************');
+  const savedStartlist = loadStartlistFromLocalStorage();
+
+  if (savedStartlist) {
+    startlist = savedStartlist; // Mettre à jour la startlist globale avec les données chargées
+    displayStartlist(savedStartlist); // Afficher la startlist
+    // ... (Votre code pour programmer les départs avec les données chargées) ...
+    console.log("Startlist chargée depuis localStorage");
+
+    // Reset and setup countdowns with imported data
+    settings_mode = "startlist";
+    // S'assurer que le switchMode est en mode startlist
+    $("#switchMode").prop("checked", true).trigger("change");
+    resetCountdowns();
+    setupCountdowns();
+  } else {
+    console.log("Aucune startlist trouvée dans localStorage");
+  }
+});
+
