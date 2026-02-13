@@ -272,6 +272,7 @@ const importExcelFile = (form) => {
 };
 
 const buildStartlistFromJudgingSheet = (rows) => {
+    console.log(rows);
     const startlist = [];
     const startGroups = new Map(); // Map of time -> {type, children}
     
@@ -285,24 +286,26 @@ const buildStartlistFromJudgingSheet = (rows) => {
     let sections = [];
     for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
-        if (row && row[1] === 'Gender' && row[2] === 'Country' && row[3] === 'Last name') {
+        console.log('Checking row:', i, row);
+        if (row && row[1] === 'Gender' && row[2] === 'Country') {
             // Found a header row, now find the event type
             let eventType = 'STA'; // default
-            
+            console.log('Found header row at index:', i);
             // Check the row above (row i-1) for event type in column K (index 10)
             if (i > 0 && rows[i-1]) {
                 const typeCell = rows[i-1][10];
+                console.log('Event type cell:', typeCell);
                 if (typeCell && typeof typeCell === 'string') {
                     if (typeCell.includes('DYN')) {
                         eventType = 'DYN/DYNB';
                     } else if (typeCell.includes('DNF')) {
                         eventType = 'DNF';
-                    } else if (typeCell.includes('STA') || typeCell.includes('Apnea')) {
+                    } else if (typeCell.includes('STA')) {
                         eventType = 'STA';
                     }
                 }
             }
-            
+            console.log('Determined event type:', eventType);
             sections.push({
                 headerRowIndex: i,
                 type: eventType
@@ -336,15 +339,15 @@ const buildStartlistFromJudgingSheet = (rows) => {
             const row = rows[rowIndex];
             if (!row || row.length < 13) continue;
             
-            const lastName = row[3];  // Column D - Last name
-            const firstName = row[4]; // Column E - First name
+            const lastName = row[4];  // Column E - Last name
+            const firstName = row[3]; // Column D - First name
             const gender = row[1];    // Column B - Gender
             const country = row[2];   // Column C - Country
             const zone = row[12];     // Column M - Zone/Lane
             let startTime = row[11];  // Column L - Official Top (start time)
             
             // Skip empty rows or no start time
-            if (!lastName || !startTime) {
+            if (!(lastName || firstName) || !startTime) {
                 continue;
             }
             
